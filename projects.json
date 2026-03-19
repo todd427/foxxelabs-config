@@ -1,0 +1,219 @@
+{
+  "_meta": {
+    "description": "FoxxeLabs project registry. Facts only — Claude derives priority ranking at session start.",
+    "updated": "2026-03-19",
+    "weightings": {
+      "note": "Todd's current priority weightings for Claude to use in ranking",
+      "deadline_pressure": "high",
+      "funding_potential": "medium",
+      "personal_interest": "medium",
+      "strategic_value": "high"
+    }
+  },
+  "projects": [
+    {
+      "name": "Mnemos",
+      "repo": "todd427/mnemos",
+      "url": "https://mnemos.foxxelabs.ie",
+      "status": "active",
+      "blocked_by": null,
+      "deadline": null,
+      "next_action": "Implement hybrid retrieval layer (retrieval.py, SQLite FTS5 + ChromaDB RRF fusion)",
+      "depends_on": [],
+      "strategic_role": "Memory infrastructure for all FoxxeLabs AI work",
+      "notes": "Deployed on Fly.io. Active backlog: hybrid retrieval standalone layer."
+    },
+    {
+      "name": "Scéal",
+      "repo": "todd427/sceal",
+      "url": null,
+      "status": "active",
+      "blocked_by": null,
+      "deadline": null,
+      "next_action": "Karaoke engine and TheInterview demo — continue pipeline development",
+      "depends_on": [],
+      "strategic_role": "Standalone product — multi-voice audiobook generation using StyleTTS2",
+      "notes": "Running on Daisy (RTX 5060 OC, Ubuntu). Venv: /home/Projects/venvs/scEnv."
+    },
+    {
+      "name": "Aislinge",
+      "repo": "todd427/aislinge",
+      "url": null,
+      "status": "active",
+      "blocked_by": null,
+      "deadline": null,
+      "next_action": "Phase 2 — generative replay, synthetic bridging documents",
+      "depends_on": ["Mnemos", "Radharc"],
+      "strategic_role": "Dream consolidation runtime — offline learning layer for the FoxxeLabs AI stack",
+      "notes": "Phase 1 complete and validated (17 Mar 2026). 12 clusters, coherent consolidated statements. Phase 3 ingests back into Mnemos as 'aislinge' source layer."
+    },
+    {
+      "name": "UCA Dissertation",
+      "repo": "todd427/ucahub",
+      "url": "https://ucahub.ie",
+      "status": "blocked",
+      "blocked_by": "Awaiting supervisor response to mindmap submission",
+      "deadline": "2026-06-12",
+      "next_action": "Wait for supervisor feedback, then proceed",
+      "depends_on": [],
+      "strategic_role": "MSc Cyberpsychology (ATU) — required for graduation",
+      "notes": "Hard deadline 12 June 2026. Mindmap sent 19 Mar 2026."
+    },
+    {
+      "name": "Legion",
+      "repo": null,
+      "url": null,
+      "status": "active",
+      "blocked_by": null,
+      "deadline": null,
+      "next_action": "Simulation phase — Isaac Sim 5.1.0 on Iris",
+      "depends_on": ["Aislinge", "Mnemos"],
+      "strategic_role": "Core research — distributed AI swarm developing selfhood through developmental mechanisms",
+      "notes": "Deliberately slow-burn. IRC/SFI funding horizon 2026-2027. Peekaboo milestone target 2028-2029. Primary machine: Iris (RTX 5080, 128GB)."
+    },
+    {
+      "name": "Anseo",
+      "repo": "todd427/anseo",
+      "url": "https://anseo.irish",
+      "status": "active",
+      "blocked_by": null,
+      "deadline": null,
+      "next_action": "Themes & Layouts system (design sketches ready); ElevenLabs hybrid TTS (45 min); Promotions/Stripe after that",
+      "depends_on": [],
+      "strategic_role": "Community platform — social observation environment for Legion; standalone product",
+      "notes": "Django-based, deployed on Railway. Active branch: dev. Live platform."
+    },
+    {
+      "name": "foxxelabs-astro",
+      "repo": "todd427/foxxelabs-astro",
+      "url": "https://foxxelabs.ie",
+      "status": "active",
+      "blocked_by": null,
+      "deadline": null,
+      "next_action": "Ongoing maintenance and content updates",
+      "depends_on": [],
+      "strategic_role": "FoxxeLabs public presence",
+      "notes": "Astro v4, deployed on Cloudflare Pages. Auto-deploys on push (~2 min build time)."
+    },
+    {
+      "name": "ga-say",
+      "repo": "todd427/ga-say",
+      "url": null,
+      "status": "active",
+      "blocked_by": null,
+      "deadline": null,
+      "next_action": "Deploy to Cloudflare Pages as subdomain of sionnach.ie (and possibly sionnach.eu)",
+      "depends_on": ["Sionnach"],
+      "strategic_role": "Irish word pronunciation tool — companion to Sionnach",
+      "notes": "Simple static tool. About to deploy. Will live at e.g. pronounce.sionnach.ie."
+    },
+    {
+      "name": "Radharc",
+      "repo": "todd427/radharc",
+      "url": null,
+      "status": "active",
+      "blocked_by": null,
+      "deadline": null,
+      "next_action": "Feeding Aislinge — operational",
+      "depends_on": ["Mnemos"],
+      "strategic_role": "Geometry mapping layer — produces UMAP cache consumed by Aislinge",
+      "notes": "Operational. Produces radharc_cache.json for Aislinge consumption."
+    },
+    {
+      "name": "UCAHub",
+      "repo": "todd427/ucahub",
+      "url": "https://ucahub.ie",
+      "status": "active",
+      "blocked_by": null,
+      "deadline": "2026-06-12",
+      "next_action": "Mirrors dissertation status",
+      "depends_on": ["UCA Dissertation"],
+      "strategic_role": "Public tracking site for UCA dissertation",
+      "notes": "Static site on Cloudflare Pages. noindex/nofollow while dissertation active."
+    },
+    {
+      "name": "Agora",
+      "repo": null,
+      "url": "https://agora.irish",
+      "status": "pre-development",
+      "blocked_by": "Post-viva slot required",
+      "deadline": null,
+      "next_action": "Begin after viva",
+      "depends_on": ["Sionnach"],
+      "strategic_role": "Multi-persona debate engine — companion product to Sionnach",
+      "notes": "Single HTML file, Cloudflare Pages. Sionnach dependency complete. Summer 2026 target."
+    },
+    {
+      "name": "Sionnach",
+      "repo": null,
+      "url": "https://sionnach.ie",
+      "status": "complete",
+      "blocked_by": null,
+      "deadline": null,
+      "next_action": "Maintenance only",
+      "depends_on": [],
+      "strategic_role": "Browser-based historical persona engine — foundation for Agora and ga-say",
+      "notes": "Deployed. WebLLM/WebGPU, fully on-device. 18 personas across 6 collections."
+    },
+    {
+      "name": "CyberSafer",
+      "repo": "todd427/cybersafer",
+      "url": "https://cybersafer.uk",
+      "status": "stable",
+      "blocked_by": "ICO registration decision pending (~£40/year)",
+      "deadline": null,
+      "next_action": "Decide on ICO registration and going public",
+      "depends_on": [],
+      "strategic_role": "Cybersecurity awareness training — static site",
+      "notes": "21 scenarios, 6 categories, 764 test checks. noindex/nofollow."
+    },
+    {
+      "name": "dirs",
+      "repo": "todd427/dirs",
+      "url": null,
+      "status": "complete",
+      "blocked_by": null,
+      "deadline": null,
+      "next_action": "Deploy on Iris when it comes online",
+      "depends_on": [],
+      "strategic_role": "CLI utility — d_helper produces readable numbered list output from bash dirs",
+      "notes": "Mostly done. Essential quality-of-life tool. Remember to deploy on every new machine, especially Iris."
+    },
+    {
+      "name": "git-mcp",
+      "repo": "todd427/git-mcp",
+      "url": "https://git-mcp-foxxelabs.fly.dev",
+      "status": "active",
+      "blocked_by": null,
+      "deadline": null,
+      "next_action": "OAuth 2.1 upgrade; git_pull --rebase support",
+      "depends_on": [],
+      "strategic_role": "MCP server exposing git tools to Claude",
+      "notes": "Deployed on Fly.io. git_branch and git_checkout deployed. git_pull chokes on diverged branches."
+    },
+    {
+      "name": "AfterWords / toddBot",
+      "repo": null,
+      "url": null,
+      "status": "parked",
+      "blocked_by": null,
+      "deadline": null,
+      "next_action": "Revisit when bandwidth allows",
+      "depends_on": [],
+      "strategic_role": "Digital legacy avatars — University of Souls concept",
+      "notes": "Parked pending other project completion."
+    },
+    {
+      "name": "glor",
+      "repo": "todd427/glor",
+      "url": null,
+      "status": "dead",
+      "blocked_by": null,
+      "deadline": null,
+      "next_action": null,
+      "depends_on": [],
+      "strategic_role": "Voice creation — abandoned",
+      "notes": "Dead project. Voice creation attempt that didn't work out. Repo retained for reference."
+    }
+  ]
+}
