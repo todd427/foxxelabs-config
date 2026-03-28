@@ -107,12 +107,71 @@ Secondary indicator: **archive rate** — how many projects get deliberately wou
 
 ---
 
+## Mnemos Capacity Projection
+
+### Current state (2026-03-28)
+
+- **57,827 document chunks** indexed
+- Source mix: 57% one-time batch imports (gdrive_hierarchy, sft, gdrive); 43% organic live sources (claude, chatgpt, git, george, lorg, anseo, aislinge, mothu)
+- Ingest rate this week: ~241 chunks/day (~15/active project/day)
+- Deployed on Fly.io `performance-2x` (4GB RAM), ChromaDB with HNSW index
+
+### Storage math
+
+These are **document counts (chunks), not bytes**. The byte implications per threshold:
+
+| Threshold | Chunks | Embedding vectors | HNSW index (est.) | Text + metadata | Total RAM needed |
+|-----------|--------|-------------------|-------------------|-----------------|-----------------|
+| Now | 57,827 | ~89MB | ~200MB | ~46MB | ~335MB |
+| 200k | 200,000 | ~293MB | ~650MB | ~160MB | **~1.1GB** |
+| 500k | 500,000 | ~732MB | ~1.6GB | ~400MB | **~2.75GB** |
+| 1M | 1,000,000 | ~1.46GB | ~3.2GB | ~800MB | **~5.5GB** |
+
+Calculation basis: sentence-transformers all-MiniLM-L6-v2 (384 dims × float32 = 1,536 bytes/vector). HNSW index ~2.2× raw embedding size (empirical ChromaDB). Text/metadata ~800 bytes/chunk average.
+
+**The binding constraint is RAM, not disk.** Fly.io volumes are cheap and expandable. The 4GB `performance-2x` machine loads the full HNSW index into memory at startup.
+
+- At **200k chunks**: ~1.1GB for Mnemos, leaving ~2.9GB for OS + app. Comfortable but approaching the point where a large query spike could pressure the machine.
+- At **500k chunks**: ~2.75GB for Mnemos alone. The 4GB machine becomes marginal. Upgrade to `performance-4x` (8GB, ~€35/mo more) required before this point.
+- At **1M chunks**: requires `performance-4x` minimum, or migration to Qdrant (significantly more memory-efficient HNSW implementation, typically 3-4× less RAM for same index).
+
+### Velocity-linked projection
+
+Mnemos ingest rate scales with active project count. Each deployed project contributes ~15 chunks/day via Claude conversations, git commit ingestion, and operational feeds (George, Lorg, Mothu).
+
+| Scenario | Deployed projects (Mar 2027) | Est. daily rate | 200k reached | 500k reached |
+|----------|------------------------------|-----------------|-------------|-------------|
+| A — unconstrained | ~65 | ~975/day | **Sep 2026** | **Jan 2027** |
+| B — natural throttle | ~35 | ~525/day | **Jan 2027** | **Sep 2027** |
+| C — deliberate constraint | ~22 | ~330/day | **Apr 2027** | **2028+** |
+
+Current trajectory (Scenario B) hits the 200k RAM pressure point around January 2027 — approximately 9 months away. That is the planning horizon for the `performance-4x` upgrade or a migration evaluation.
+
+### The live fraction problem
+
+The 57% batch import fraction (gdrive_hierarchy, sft) masks the true organic growth rate. Stripping those out:
+
+- Organic corpus now: ~24,900 chunks
+- Organic ingest rate: ~241/day (all current ingest is organic — batch imports are complete)
+- Organic corpus doubles in: ~103 days (~July 2026)
+
+The batch imports are a historical artefact. By mid-2026, organic sources will be the dominant fraction and the growth curve will be purely velocity-driven.
+
+### Action items
+
+1. **R2 backup cron** — implement before 200k, not after. This is the safety net for any migration. Currently unresolved and flagged as single point of failure.
+2. **performance-4x upgrade planning** — budget ~€35/mo additional from approximately Q4 2026 on Scenario B.
+3. **Qdrant migration evaluation** — schedule as a post-viva technical spike (Jun–Jul 2026). ChromaDB is excellent to ~300k chunks; beyond that Qdrant's on-disk HNSW and lower RAM footprint become attractive.
+4. **Ingest rate monitoring** — Faire/Fionn should track chunks/day as a standing metric. A spike (e.g. bulk import of the 70+ novel backlist, ~7k chunks) should be a conscious decision, not an accident.
+
+---
+
 ## Data Sources
 
-- `projects.json` — foxxelabs-config (updated 2026-03-28, 30 projects)
+- `projects.json` — foxxelabs-config (updated 2026-03-28, 31 projects)
 - Rialú `list_projects` — 20 projects with platform/status/phase (2026-03-28)
+- Mnemos `get_stats` — 57,827 docs, composition and recent activity (2026-03-28)
 - Faire dashboard screenshot — €71/mo, 17 projects (2026-03-27)
-- Mnemos query: "project creation rate acceleration" — production model v1
 - Prior report: `reports/2026-03-25-production-model-analysis.md`
 
 ---
