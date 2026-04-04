@@ -1,5 +1,5 @@
 # FoxxeLabs — Project Roadmap
-## As of 19 March 2026
+## As of 4 April 2026
 
 **Author:** Todd McCaffrey / FoxxeLabs
 **Maintained by:** Claude (Anthropic Sonnet 4.6) on instruction
@@ -19,19 +19,26 @@ INFRASTRUCTURE
 RESEARCH PIPELINE
   Radharc         — geometry mapping (UMAP/adjacency over Mnemos)
   Aislinge        — dream consolidation (offline learning layer)
+  Leargas         — visual intelligence / GMM semantic field
+  Macalla         — personalized LLM pipeline (AfterWords backbone)
   Legion          — distributed AI swarm (embodied mind, end target)
 
 PRODUCTS & PLATFORMS
   Anseo           — community platform (social observation env for Legion; standalone)
   Rialú           — personal command centre (ops, deployments, machines, budget)
   Scéal           — multi-voice audiobook pipeline
-  Glór            — voice creator (formant + Vocos neural vocoder)
+  Glór            — voice creator / TTS routing abstraction layer
   ga-say          — Irish pronunciation tool
   foghlaim        — Irish language learning tool
+  Colainn         — biometric time-series store (medulla layer)
+  Lorg            — personal health telemetry platform
+  George          — vision-language memory service
+  Mothu           — emotional AI layer
+  Someday         — end-of-life digital companion (AfterWords entry point)
   Sionnach        — browser-based historical persona engine (complete)
   ucahub          — UCA dissertation public hub
   CyberSafer      — cybersecurity awareness training
-  AfterWords      — digital legacy avatars (parked)
+  AfterWords      — digital legacy avatars (parked, depends on Macalla)
   tionol          — publication platform (placeholder)
   Agora           — multi-persona debate engine (pre-development)
 ```
@@ -59,6 +66,7 @@ Derived priority ranking:
 7. **ga-say / foghlaim** — deployed, word list expansion ongoing
 8. **Mnemos** — infrastructure, Google Drive ingestion still pending
 9. **git-mcp** — OAuth 2.1 and git_pull --rebase outstanding
+10. **Macalla** — post-viva; blocked on Iris + Léargas Phase 1
 
 ---
 
@@ -111,13 +119,13 @@ Derived priority ranking:
 4. **Phase 6 — Second-order consolidation** — run Aislinge on the `aislinge` source itself (consolidating the consolidations)
 5. **Phase 7 — Legion integration** — initialise Legion swarm with consolidated belief layer as prior world model
 
+#### Macalla dependency
+Aislinge bridge statements are the **anchor layer** for Macalla training batches. A stable Phase 5+ bridge set is prerequisite for the first Macalla training run. High-quality Aislinge output = high-quality Macalla anchors.
+
 #### Re-run triggers
 - `claude` source grows by ~1,000 chunks
 - Significant new Anseo content lands
 - After any major life event worth consolidating
-
-#### Architecture note
-The pipeline is fully scriptable: `Radharc → aislinge_phase2.py → ingest_bridges.py`. Automation candidate once Phase 7 is stable.
 
 ---
 
@@ -133,33 +141,22 @@ The pipeline is fully scriptable: `Radharc → aislinge_phase2.py → ingest_bri
 - 42/42 tests passing ✅
 - Deployed and seeded ✅
 
-#### Next immediate (to make Phase 1 fully operational)
+#### Next immediate
 1. **Set `RAILWAY_API_TOKEN`** — account-level from `railway.com/account/tokens`
 2. **CNAME `rialu.ie` → `rialu.fly.dev`** in Cloudflare DNS (proxied: on)
 3. **Cloudflare Zero Trust Access** — Self-hosted app for rialu.ie, Google OAuth, policy: `todd@foxxelabs.ie`
 
 #### Phase 2 — Machine agents
 1. `rialu-agent.py` — Python daemon on Rose, Iris, Daisy
-   - 30s heartbeat: process list (filtered to known projects), git repo states for `/home/Projects/`, resource stats (CPU/RAM/GPU)
-   - HMAC-SHA256 auth via `RIALU_AGENT_SECRET` env var
-2. Wire `routers/machines.py` — currently a stub returning `[]`
-3. Machines tab in SPA — card grid, resource bars, process list, repo state table
+2. Wire `routers/machines.py`
+3. Machines tab in SPA
 4. Action proxy — hub → agent for `git pull`, restart, kill
-5. `systemd` unit file + screen fallback per machine
-6. `rialu-agent.service` systemd unit
+5. `systemd` unit file per machine
 
 #### Phase 3 — Intelligence
 1. Anthropic usage API poller (daily)
-2. API cost attribution per project via session token estimates
-3. Budget tab: per-project breakdown, manual → auto
-4. Timeline + Kanban views in Projects tab (currently stub)
-5. Cloudflare Pages + GitHub pollers
-6. Milestone due-date alerts
-
-#### Phase 4 — Polish
-1. Export: work log CSV, budget CSV
-2. Mnemos integration — session summaries auto-ingested on save
-3. `rialu-agent` upgrade to OAuth 2.1 (same pattern as `mnemos/server/oauth_provider.py`)
+2. Budget tab: per-project breakdown
+3. Timeline + Kanban views in Projects tab
 
 ---
 
@@ -167,90 +164,160 @@ The pipeline is fully scriptable: `Radharc → aislinge_phase2.py → ingest_bri
 **Status:** Live at anseo.irish — active development
 **Branch:** dev → Railway auto-deploy
 
-#### Done (selected highlights)
-- Communities (full stack), moderation queue, themes, layouts ✅
-- Civic Engine (planning applications, bills, Oireachtas) ✅
-- Feed pills, post interactions, markdown, translation (14 languages) ✅
-- Bug tracker ✅
-- OAuth2 plumbing ✅
-- Microsoft @atu.ie login ✅
-- Daily digest (GitHub Actions) ✅
-
 #### Sprint sequence
 
 **Sprint 3a — Visual white-label (10–14 hrs)**
-- Theme editor UI (users create/edit custom themes)
+- Theme editor UI
 - 5 new layouts (expand from 9 to 14)
 - Community-level layout assignment
 - 3 mid-tone themes: Ink & Paper, Dusk, Mist
 - Gradient background support
 
 **Sprint 3b — Operational white-label (12–17 hrs)**
-- Logo + favicon via env var or admin (`SITE_LOGO_URL`, `SITE_FAVICON_URL`)
-- Database-driven content pages (About, Terms, Rules, Getting Started — editable via admin)
-- Landing page customisation (hero text, features, CTA all configurable)
-- Email template audit (purge hardcoded "Anseo" / "ATU Letterkenny")
-- Configurable seed data (seed_categories accepts config file per instance)
-- Deployment playbook — tested runbook someone else can follow
+- Logo + favicon via env var or admin
+- Database-driven content pages
+- Landing page customisation
+- Email template audit
+- Deployment playbook
 
 **Sprint 4 — Boards & Views (20–24 hrs)**
-- Multiple view modes (list, card, board, timeline) — the "Padlet competitor" moment
+- Multiple view modes (list, card, board, timeline)
 - Lightweight quick-post from board view
 - Padlet import/export
 
-**Sprint 5 — Monitoring & Intelligence (10–15 hrs)**
-- Redis caching, query optimisation
-- LLM moderation (contextual content review replacing keyword blocklist)
-- API analytics
-
-**Sprint 6 — Calendar & Events (13–19 hrs)**
+**Sprint 5+ — Monitoring, Calendar, Major features**
+- Redis caching, LLM moderation, API analytics
 - Event model, RSVP, calendar view
-- Community event feeds
-
-**Sprint 7+ — Major features**
-- Folláine (wellbeing module, 30–42 hrs)
-- Promotions/SumUp (revenue — after sufficient user base)
-- Book App (long-form publishing — Kindle already wired)
-- Marketplace (60–83 hrs — needs user base first)
-- Chat (Django Channels + Redis)
-- Code embeds
-
-#### Cúpla Focal / Foghlaim integration
-The foghlaim project (standalone Irish learning tool) overlaps significantly with the Anseo "Learn" module scope. Decision pending: build the full Learn platform in Anseo, or keep foghlaim standalone and link from Anseo. The standalone approach is simpler and deployed; the Anseo-integrated approach unlocks community features and the multilingual instruction angle (Irish taught in any L1 via Google Translate + Azure TTS).
-
-#### Generic POST endpoint (pending — needed for Scéal PRD)
-`POST /api/v1/post/create/` — authenticated post creation, community + content, returns post URL. Enables `foxxe_publish.py` wrapper (ingest to Mnemos + post to Anseo in one call).
+- Folláine (wellbeing module)
+- Promotions/SumUp, Book App, Marketplace, Chat
 
 ---
 
 ### Scéal (`todd427/sceal`)
-**Status:** Active — HEAD clean after 10 commits today
-**Machine:** Daisy (RTX 5060 OC, Ubuntu) / Rose (RTX 5070)
-
-#### Done (as of 19 March 2026)
-- Full multi-voice pipeline: RTF/TXT → segment → textprep → prosody → TTS → QA → ffmpeg → MP3 ✅
-- MOS scorer (quality.py, v0.6.0) ✅
-- Automatic prosody from punctuation ✅
-- QA retry loop with best-of-N selection ✅
-- JOBS_DIR/latest symlink ✅
-- Render log persistence ✅
-- Full web UI (server/ui.html) ✅
-- Five character voices: Narrator, Simon, Elveth, Golden, Erayshin ✅
+**Status:** Active — v0.6.0 on Daisy/Rose
 
 #### Next
-1. **PRD** — write Scéal PRD v1.0 (was started today, not completed)
-2. **Anseo post endpoint** — needs `POST /api/v1/post/create/` in Anseo before PRD can be posted
-3. **`foxxe_publish.py`** — local wrapper: `ingest_document` to Mnemos + POST to Anseo in one call
-4. **TheInterview demo** — full end-to-end render of the sample story
-5. **Karaoke engine** — sync generated audio with text for karaoke-style display
-6. **Character voice expansion** — additional reference voices, more phoneme rules
-7. **Batch quality metrics** — per-project MOS history, trend charts in UI
-8. **ABAIR.ie integration** — Irish dialect voices (Ulster/Connacht/Munster); contact TCD Phonetics lab
+1. **PRD** — write Scéal PRD v1.0
+2. **Anseo post endpoint** — needs `POST /api/v1/post/create/` in Anseo
+3. **`foxxe_publish.py`** — local wrapper: ingest to Mnemos + POST to Anseo
+4. **TheInterview demo** — full end-to-end render
+5. **Karaoke engine** — sync generated audio with text
+6. **Glór migration** — render.py backend swap to Glór API (gate: Glór Phase 2)
+
+---
+
+### Macalla (`todd427/macalla`)
+**Irish:** *macalla* — echo, resonance (MAK-ul-uh)
+**Status:** Pre-development — post-viva priority
+**PRD:** `foxxelabs-config/macalla/PRD.md` (v0.2, April 2026)
+**Machine:** Iris (RTX 5080, 128GB) — training; Daisy — dev/eval
+
+#### What it is
+Personalized LLM pipeline that accumulates Todd's voice and reasoning style through punctuated QLoRA fine-tuning on personal data. The training backbone for **AfterWords / toddBot / University of Souls**.
+
+**Core split:**
+- **Macalla weights** = *how* Todd reasons (style, topology, structural priors)
+- **Mnemos RAG** = *what* Todd knows (episodic facts, specific history)
+Both are required for a credible AfterWords avatar. Neither replaces the other.
+
+#### Stack
+| Component | Choice | Notes |
+|---|---|---|
+| Base model | `Qwen/Qwen3-8B-Instruct` | Native thinking/non-thinking toggle; 128k ctx; superior LoRA characteristics |
+| Training method | QLoRA (PEFT) | Memory-efficient; merge on eval pass |
+| Quantisation | vLLM llm-compressor | Replaces deprecated AutoAWQ |
+| Corpus | Mnemos (~61k docs) | Weighted by recency + Aislinge salience |
+| Consolidation signal | Aislinge bridge statements | High-signal anchors for each training batch |
+| Training trigger | Léargas GMM drift detection | Semantics-aware — not naive schedule |
+| Training machine | Iris (RTX 5080, 128GB) | Not yet built |
+| Checkpoints | Todd-YYYY-MM versioned | Snapshot before each run |
+
+#### Dual deployment modes (Qwen3 native)
+| Mode | Use case | Latency |
+|---|---|---|
+| Thinking | AfterWords persona queries, complex reflection | Seconds — acceptable |
+| Non-thinking | Real-time voice output via Scéal/Glór | <300ms — required |
+
+Both modes from the same merged checkpoint.
+
+#### Training loop
+```
+Léargas drift signal
+  → Sample Mnemos (recency + salience weighted)
+  → Filter through Aislinge bridge statements (anchor layer)
+  → QLoRA fine-tune Qwen3-8B on Iris
+  → Evaluate (voice fidelity probe set)
+  → Merge LoRA if eval passes threshold
+  → Checkpoint as Todd-YYYY-MM
+  → Ingest training run summary to Mnemos
+```
+
+**Cadence:** Drift-triggered (Léargas) or weekly — not nightly.
+
+#### Versioned checkpoints
+```
+macalla/
+  checkpoints/
+    Todd-2026-04/    ← first run (post-viva)
+    Todd-2026-07/    ← second run
+    Todd-2027-01/    ← annual
+  current -> Todd-2026-07  (symlink)
+```
+
+#### Honest ceilings
+- **Catastrophic forgetting:** QLoRA mitigates, doesn't solve. Versioned snapshots are the workaround.
+- **Integration vs accumulation:** Macalla accumulates statistical pattern, not integrated world model. Mnemos handles episodic recall.
+- **Voice fidelity:** Target is "recognisably Todd" at 8B parameters — not indistinguishable.
+
+#### Novel contribution
+GMM-annotated LoRA training at solo-dev scale is unexplored territory. Potential paper post-viva: EMNLP workshop on personalized LLMs or ACL SRW.
+
+#### Milestone plan
+| Milestone | Target | Blocker |
+|---|---|---|
+| Repo creation | Post-viva | — |
+| Training environment on Iris | Post-viva | Iris not yet built |
+| Léargas Phase 1 (GMM drift) | Post-viva | — |
+| First training run | Summer 2026 | Iris, Léargas |
+| Todd-2026 checkpoint | Autumn 2026 | First run |
+| AfterWords integration | 2027 | All of above |
+
+**Do not begin implementation before 12 June 2026.**
+
+---
+
+### Léargas (`todd427/leargas`)
+**Status:** Active — PRD v1.2 committed
+**Depends on:** Mnemos, Radharc
+
+#### What it is
+GMM over semantic embedding space — cognitive field ("neocortex") layer distinct from Mnemos ("hippocampus"). Detects structural drift in the knowledge corpus. Phase 1 GMM output feeds Macalla training trigger.
+
+#### Next
+1. **Phase 1 implementation** per PRD v1.2
+2. **Drift detection API** — expose GMM cluster deltas for Macalla to poll
+3. **Phase 2** — temporal manifold (poc/temporal_manifold.py validated)
+
+---
+
+### Glór (`todd427/glor`)
+**Status:** Active — routing abstraction layer
+
+#### Routing logic
+- `voice_id` in `cloned_voices` → XTTS v2 (identity-critical: Todd's voice, AfterWords, toddBot)
+- `batch` flag or long text → StyleTTS2 (speed-critical: audiobook rendering)
+- default → XTTS v2
+
+#### Next
+1. **voices.json integration** with Sionnach/Agora
+2. **Phase 2 — Prosody normalisation** (beat tags → silence injection; gate for Scéal migration)
+3. **Scéal migration** (render.py backend swap; gate: Glór Phase 2)
+4. **Macalla/AfterWords integration** (todd-primary clone for toddBot)
 
 ---
 
 ### Legion
-**Status:** Slow-burn research, active on Iris
+**Status:** Slow-burn research
 **Machine:** Iris (RTX 5080, 128GB)
 **SFI funding horizon:** 2026–2027
 
@@ -258,207 +325,106 @@ The foghlaim project (standalone Irish learning tool) overlaps significantly wit
 ```
 Legion = distributed somatic mind
   — drone swarm: n bodies, one mind (distributed proprioception)
-  — Unitree manipulator: tool used by Legion (not part of body, but can be incorporated)
+  — Unitree manipulator: tool used by Legion
   — Peekaboo experiment: social cognition milestone
-    — drone swarm does aerial "boo"
-    — Unitree does face-level cover-and-reveal
-    — Legion orchestrates both, staging one social moment across two physical forms
 ```
 
+#### Neurosymbolic layer (under consideration)
+SNN (spiking neural network) stage via Intel Lava framework — simulation on Daisy/Iris now, Loihi 3 hardware when commercially available (expected late 2026). Event-driven, on-chip plasticity — aligns with Legion's developmental architecture.
+
 #### Stack position
-`Mnemos (episodic) → Radharc (geometry) → Aislinge (consolidation) → Legion (embodied)`
-
-Legion initialises with the consolidated belief layer from Aislinge as its prior world model. This is Phase 7 of Aislinge.
-
-#### Done
-- Conceptual architecture complete ✅
-- PRD written ✅
-- FoxxeLabs Research Ltd vehicle established ✅
-- IRC scaffold (peekaboo milestone) ✅
-- Isaac Sim 5.1.0 on Iris — simulation environment ✅
+`Mnemos → Radharc → Aislinge → Legion (embodied)`
 
 #### Next
-1. **Agent-to-agent messaging** — peekaboo milestone (active)
-2. **Swarm coordination protocol** — first two agents wired
-3. **SFI funding letter** — cost breakdown needed by Q2 2026
-4. **Aislinge Phase 7 integration** — initialise with consolidated belief layer
-5. **Peekaboo experiment** — first successful social cognition demonstration
-6. **Target milestone:** Peekaboo 2028–2029 (deliberately slow-burn)
-
-#### Open questions
-- Agent transport for Rialú integration: plain uvicorn or FastMCP StreamableHTTP? FastMCP adds MCP accessibility (Claude could query Legion state directly)
-- Does the Sionnach personality layer serve as Legion's deliberative voice? The connection is real and unexplored.
+1. **Agent-to-agent messaging** — peekaboo milestone
+2. **Swarm coordination protocol**
+3. **SFI funding letter** — cost breakdown Q2 2026
+4. **Aislinge Phase 7 integration**
+5. **Peekaboo experiment** — social cognition demonstration (target 2028–2029)
 
 ---
 
 ### Mnemos (`todd427/mnemos`)
-**Status:** Operational — 33,989 documents
+**Status:** Operational — ~61,607 documents (April 2026)
 **URL:** mnemos.foxxelabs.ie
 
-#### Done (as of 19 March 2026)
-- Hybrid retrieval (FTS5 + ChromaDB + RRF k=60) ✅
-- Template extraction (server/templates/) ✅
-- Date metadata on all chunks ✅
-- Automated ingestion: email IMAP, Anseo pull, FoxxeLabs news ✅
-- `get_doc_count` MCP tool ✅
-- `get_stats` MCP tool ✅
+#### Next
+1. **R2 backup cron** — single point of failure, unresolved
+2. **OneDrive ingestion** — academic material not yet indexed
+3. **Google Drive ingestion** — status unclear from prior session
+4. **Volume expansion monitoring** — 200k chunks (~Jan 2027) is performance-2x pressure point
+
+#### Macalla dependency
+Mnemos is the primary training corpus for Macalla. Corpus health, source diversity, and ingestion freshness directly affect Macalla output quality.
+
+---
+
+### Colainn (`todd427/colainn`)
+**Status:** Active — created 28 March 2026
+**URL:** colainn.com
+
+#### What it is
+Structured time-series biometric store. "Medulla" layer — homeostatic, schema-bound, fast. Parallel to Mnemos ("cerebrum"). 15-minute hippocampus snapshots tag Mnemos docs at ingest with contemporaneous physiological state.
 
 #### Next
-1. **Google Drive ingestion** (`ingest_gdrive.py`) — was started with OAuth2, interactive folder browser, dedup detection, dry-run mode; status unclear, may be incomplete
-2. **`get_doc_count` as session-start health check** — should be called at start of every session to verify MCP connectivity
-3. **Hybrid retrieval via MCP** — confirm `query_memory` is using the new FTS5+RRF layer end-to-end (not just dense)
-4. **Mnemos `repost_document`** — concept for future: wrapper that calls `ingest_document` AND posts to Anseo via `foxxe_publish.py`
-5. **OneDrive ingestion** — academic material on OneDrive, not yet indexed
-6. **Volume expansion** — current ChromaDB volume is 3GB (`vol_rk12z3wnjd1y6624`); monitor growth
-
-#### Document composition (19 March 2026)
-| Source | Count | % |
-|---|---|---|
-| chatgpt | 15,552 | 46% |
-| sft | 12,820 | 38% |
-| claude | 4,940 | 15% |
-| anseo | 359 | 1% |
-| aislinge | 234 | 1% |
-| doc | 84 | 0% |
+1. `fly launch` + volume create
+2. `app/withings.py` OAuth2 pipeline (BPM Core)
+3. `app/baseline.py` nightly job
+4. Wire George → `visual_novelty` into `/readings` endpoint
 
 ---
 
-### ga-say (`todd427/ga-say`)
-**Status:** Deployed — ga-say.sionnach.ie / gaeltacht.sionnach.ie
+### Lorg / George / Mothu
+**Status:** All active — biometric/sensor layer
 
-#### Done
-- Full app: 70+ words, 7 categories, 4 themes ✅
-- Azure Neural TTS via CF Pages Function token proxy ✅
-- gaeltacht.sionnach.ie as alternate domain ✅
+- **Lorg** — GPS/health telemetry, Garmin + Withings, nightly Mnemos ingest
+- **George** — vision-language (moondream2), visual novelty scoring → Colainn
+- **Mothu** — emotional AI (VADER/NRC/HuggingFace), Phase 1 complete; Phase 2 correlates with Colainn biometric ground truth
+
+---
+
+### ga-say + foghlaim
+**Status:** Both deployed — sionnach.ie
 
 #### Next
-1. **Word list expansion** — more categories, more words (especially Gaeltacht vocabulary)
-2. **Dialect tagging** — Ulster/Connacht/Munster variants where applicable
-3. **ABAIR.ie voices** — if TCD API access granted, add authentic dialect voices alongside Azure
-4. **Link from foghlaim** — cross-navigation between the two sionnach.ie tools
+- Word list expansion + dialect tagging (ga-say)
+- localStorage SRS persistence + lesson structure (foghlaim)
+- ABAIR.ie partnership pitch (both)
+- Check if *fís* now indexed in Mnemos → update words.js description
 
 ---
 
-### foghlaim (`todd427/foghlaim`)
-**Status:** Deployed — foghlaim.sionnach.ie (created today)
+### Someday (`todd427/someday`)
+**Status:** Active — someday.irish
+**Role:** AfterWords entry point
 
-#### Done
-- Flashcards (Irish↔English both directions) ✅
-- Quiz mode (multiple choice) ✅
-- SM-2 spaced repetition ✅
-- Streak counter ✅
-- Orla/Colm Azure Neural voice toggle via ga-say proxy ✅
-
-#### Next
-1. **Word list expansion** — more words, more categories
-2. **Progress persistence** — SRS state currently in memory only; localStorage persistence
-3. **Lesson structure** — group words into themed lessons (greetings lesson, numbers lesson etc.)
-4. **Anseo integration decision** — standalone tool vs integrated into Anseo Learn module; currently leaning standalone with link-from-Anseo
-5. **ABAIR.ie voices** — same as ga-say, when available
-
----
-
-### Glór (`todd427/glor`)
-**Status:** Active — formant + Vocos neural vocoder working
-
-#### Done
-- Complete formant synthesis engine (22050Hz, 3-resonator IIR, Rosenberg glottal pulse) ✅
-- Vocos ONNX neural vocoder (BSC-LT/vocos-mel-22khz) — silent output fixed today ✅
-- WAV export ✅
-- WAV analyser → auto-apply sliders ✅
-- Recording panel ✅
-- voices.json export (Agora/Sionnach compatible) ✅
-
-#### Next
-1. **voices.json integration testing** — confirm Sionnach and Agora can consume the exported format
-2. **Scéal integration** — can Glór-designed voices feed into Scéal's character voice system?
-3. **Voice library** — pre-designed character archetypes as shareable voices.json
-4. **Prosody controls** — integrate `<beat>` and emphasis markers from Scéal's prosody.py
-
----
-
-### git-mcp (`todd427/git-mcp`)
-**Status:** Deployed — git-mcp-foxxelabs.fly.dev
-
-#### Done
-- 13 git tools over StreamableHTTP ✅
-- `git_branch`, `git_checkout` deployed ✅
-
-#### Next
-1. **`git_pull --rebase` support** — currently chokes on diverged branches
-2. **OAuth 2.1 upgrade** — same pattern as `mnemos/server/oauth_provider.py`
-
----
-
-### CyberSafer (`todd427/cybersafer`)
-**Status:** Stable, paused — cybersafer.uk (noindex/nofollow)
-
-#### Done
-- v2 deployed: 21 scenarios, 6 categories, 764 test checks ✅
-- Workflow: edit JSON → `python _build.py` → `python test_scenarios.py --offline` → git push → auto-deploy ✅
-
-#### Decisions pending
-1. **ICO registration** (~£40/year) — required before public launch
-2. **WHOIS verification** — should show FoxxeLabs, not personal details
-3. **Go public decision** — no timeline set
-
----
-
-### Sionnach
-**Status:** Complete — sionnach.ie
-
-#### Done
-- 18 personas across 6 collections ✅
-- WebLLM/WebGPU, fully on-device ✅
-- Deployed ✅
-
-#### Next
-- Maintenance only
-- Foundation for Agora (post-viva)
-
----
-
-### Agora
-**Status:** Pre-development — blocked on post-viva slot
-
-#### Concept
-Multi-persona debate engine. Sionnach personas argue with each other. Single HTML file, Cloudflare Pages. Summer 2026 target.
-
-#### Dependencies
-- Sionnach complete ✅
-- Post-viva slot (June 2026+)
+Web-first (Vite + React + TypeScript, Web Crypto API + OPFS, Cloudflare Pages). VOICE.md v0.1: word "death" never appears in product. Three-session onboarding. AfterWords/Macalla connection invisible to users.
 
 ---
 
 ### AfterWords / toddBot
-**Status:** Parked
+**Status:** Parked — post-dissertation
 
-#### Concept
-Digital legacy avatar project. University of Souls framing. toddBot = AI avatar trained on personal history and writings. Versioned checkpoints (Todd-2025, Todd-2026 etc.) with watermarked voice and video.
+**The full stack:**
+```
+Macalla checkpoint (weights — how Todd reasons)
+  + Mnemos (episodic RAG — what Todd knows)
+  + Glór/ElevenLabs (voice clone)
+  + Someday (entry point / legacy interface)
+  = toddBot
+```
 
-#### Depends on
-- Dissertation complete
-- ElevenLabs voice cloning
-- Mnemos as the knowledge base
-
----
-
-### tionol (`todd427/tionol`)
-**Status:** Placeholder — tionol.irish
-
-#### Concept
-Academic and creative publication platform. Post-viva. Irish: *tionól* — assembly, gathering. No development timeline set.
+Macalla is the enabling technology. Without it, toddBot is a RAG chatbot with no personal voice. With it, versioned checkpoints (Todd-2026, Todd-2027) become possible — the University of Souls concept.
 
 ---
 
-### foxxelabs.ie (`todd427/foxxelabs-astro`)
-**Status:** Active — auto-deploys on push
-
-#### Next
-- Continue publishing research articles as projects produce results
-- Rialú wireframe at `/ops-dashboard/` stays current with Phase 1 completion
-- Add Scéal page when PRD is published
-- Add foghlaim/ga-say pages under Irish language tools section
+### CyberSafer / Sionnach / Agora / tionol / dirs / Park
+- **CyberSafer** — stable, paused; ICO registration decision pending
+- **Sionnach** — complete; maintenance only; foundation for Agora
+- **Agora** — pre-development; Summer 2026 target; post-viva
+- **tionol** — placeholder; post-viva
+- **dirs** — complete; deploy on Iris when built
+- **Park** — active; EAS build pending
 
 ---
 
@@ -468,7 +434,12 @@ Academic and creative publication platform. Post-viva. Irish: *tionól* — asse
 Mnemos
   ├── Radharc
   │     └── Aislinge
-  │           └── Legion
+  │           ├── Legion (Phase 7)
+  │           └── Macalla (anchor layer)
+  ├── Léargas
+  │     └── Macalla (drift trigger)
+  ├── Macalla (corpus)
+  │     └── AfterWords / toddBot
   ├── Scéal (indirect — session ingestion)
   └── Rialú (Phase 4 — session summaries)
 
@@ -483,38 +454,50 @@ Anseo
   └── foghlaim (potential integration — decision pending)
 
 Glór
-  └── Scéal (potential voice feed — not yet integrated)
-  └── Sionnach (voices.json schema compatibility)
+  ├── Scéal (routing layer — gate: Phase 2)
+  ├── Sionnach (voices.json schema)
+  └── AfterWords / Macalla (todd-primary voice clone)
+
+Colainn
+  ├── Lorg (telemetry source)
+  ├── George (visual_novelty source)
+  └── Mothu (sentiment metrics source)
+
+Someday
+  └── AfterWords (entry point)
 ```
 
 ---
 
 ## Horizon Summary
 
-### Immediate (this week)
+### Immediate (April 2026)
 - Rialú: RAILWAY_API_TOKEN + DNS + Cloudflare Access
 - Aislinge Phase 5: wait for Daisy run, evaluate, ingest
-- UCA: await supervisor feedback on mindmap
+- UCA: await supervisor feedback, begin Chapter 3
+- Colainn: Fly.io deploy + Withings OAuth2
+- Glór Phase 2: prosody normalisation (gate for Scéal migration)
 
-### Short term (March–April 2026)
-- Rialú Phase 2: rialu-agent daemon on Rose/Iris/Daisy
-- Anseo Sprint 3a: visual white-label (themes, layouts)
-- Scéal: PRD + Anseo post endpoint + TheInterview demo
-- Mnemos: Google Drive ingestion completion
-- git-mcp: git_pull --rebase
-
-### Medium term (April–June 2026)
+### Short term (April–June 2026)
 - UCA Dissertation: Chapters 3–5, submission 12 June
-- Aislinge Phase 6: second-order consolidation
-- Anseo Sprints 3b–5: operational white-label, boards, monitoring
-- Legion: swarm coordination protocol, SFI letter
+- Rialú Phase 2: rialu-agent daemon
+- Anseo Sprint 3a: visual white-label
+- Scéal: PRD + Anseo post endpoint + TheInterview demo
+- Léargas Phase 1: GMM implementation
 
-### Long term (post-viva, Summer 2026+)
+### Medium term (post-viva, Summer 2026)
+- **Macalla:** repo creation, Iris training environment, first training run
 - Agora: multi-persona debate engine
-- Legion: Peekaboo experiment
-- AfterWords: revisit when bandwidth allows
+- AfterWords: revisit with Macalla in place
+- Legion: swarm coordination protocol, SFI letter
+- Aislinge Phase 6: second-order consolidation
+
+### Long term (2027+)
+- **Macalla:** Todd-2026 checkpoint → AfterWords integration
+- Legion: Peekaboo experiment (target 2028–2029)
 - tionol: publication platform
 - Aislinge Phase 7: Legion integration with consolidated belief prior
+- **Paper:** GMM-annotated LoRA at solo-dev scale (post-viva venue TBD)
 
 ---
 
@@ -528,5 +511,5 @@ Glór
 
 ---
 
-*FoxxeLabs Roadmap — 2026-03-19*
-*Prepared by Claude (Anthropic Sonnet 4.6) on instruction from Todd McCaffrey*
+*FoxxeLabs Roadmap — 4 April 2026*
+*Generated-with: Claude Sonnet 4.6*
