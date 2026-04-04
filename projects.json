@@ -1,7 +1,7 @@
 {
   "_meta": {
     "description": "FoxxeLabs project registry. Facts only — Claude derives priority ranking at session start.",
-    "updated": "2026-03-28",
+    "updated": "2026-04-04",
     "weightings": {
       "note": "Todd's current priority weightings for Claude to use in ranking",
       "deadline_pressure": "high",
@@ -34,7 +34,7 @@
       "next_action": "Phase 5 running on Daisy — wait, evaluate, ingest if scores improve",
       "depends_on": ["Mnemos", "Radharc"],
       "strategic_role": "Dream consolidation runtime — offline learning layer for the FoxxeLabs AI stack",
-      "notes": "Phases 1-4 complete. REM PRD Phase 8 written. Schema mismatch fixed (poc/pkl_to_npz.py). Phase 6 = second-order consolidation. Phase 7 = Legion integration.",
+      "notes": "Phases 1-4 complete. REM PRD Phase 8 written. Schema mismatch fixed (poc/pkl_to_npz.py). Phase 6 = second-order consolidation. Phase 7 = Legion integration. Bridge statements feed Macalla training.",
       "created_approx": "2025-10"
     },
     {
@@ -73,8 +73,21 @@
       "next_action": "R2 backup cron (tiered resilience plan); OneDrive ingestion",
       "depends_on": [],
       "strategic_role": "Memory infrastructure — RAG/episodic layer for all FoxxeLabs AI work",
-      "notes": "57,827 docs (2026-03-28). ChromaDB, Fly.io lhr, performance-2x/4GB. MCP: query_memory, ingest_document, get_stats, get_doc_count. Single point of failure — R2 backup unresolved.",
+      "notes": "~61,607 docs (2026-04-03). ChromaDB, Fly.io lhr, performance-2x/4GB. MCP: query_memory, ingest_document, get_stats, get_doc_count. Single point of failure — R2 backup unresolved. Primary corpus for Macalla training.",
       "created_approx": "2025-06"
+    },
+    {
+      "name": "Macalla",
+      "repo": "todd427/macalla",
+      "url": null,
+      "status": "pre-development",
+      "blocked_by": "Post-viva slot (June 2026+); Iris not yet built",
+      "deadline": null,
+      "next_action": "Post-viva: create repo, set up training environment on Iris",
+      "depends_on": ["Mnemos", "Aislinge", "Leargas", "Glór"],
+      "strategic_role": "Personalized LLM pipeline — accumulates Todd's voice and reasoning via punctuated QLoRA; backbone for AfterWords/toddBot",
+      "notes": "Irish: echo/resonance (MAK-ul-uh). Base model: Qwen/Qwen3-8B-Instruct. Training machine: Iris (RTX 5080). Corpus: Mnemos weighted by recency + Aislinge salience. Training trigger: Léargas GMM drift detection. Dual-mode: thinking (AfterWords queries) / non-thinking (voice output). Versioned checkpoints: Todd-YYYY-MM. Novel contribution: GMM-annotated LoRA at solo-dev scale — potential paper post-viva. PRD v0.2 at foxxelabs-config/macalla/PRD.md.",
+      "created_approx": "2026-04-02"
     },
     {
       "name": "Anseo",
@@ -112,7 +125,7 @@
       "next_action": "Swarm coordination protocol; SFI funding letter cost breakdown (Q2 2026)",
       "depends_on": ["Aislinge", "Mnemos"],
       "strategic_role": "Core research — distributed AI swarm developing selfhood through developmental mechanisms",
-      "notes": "Deliberately slow-burn. Peekaboo milestone target 2028-2029. Machine: Iris (RTX 5080, 128GB). IRC scaffold done. Isaac Sim 5.1.0 planned.",
+      "notes": "Deliberately slow-burn. Peekaboo milestone target 2028-2029. Machine: Iris (RTX 5080, 128GB). IRC scaffold done. Isaac Sim 5.1.0 planned. Neurosymbolic hybrid architecture under consideration (SNN/Loihi 3 layer).",
       "created_approx": "2024-06"
     },
     {
@@ -150,8 +163,8 @@
       "deadline": null,
       "next_action": "voices.json integration with Sionnach/Agora; Scéal voice feed exploration",
       "depends_on": [],
-      "strategic_role": "Voice creator — formant synthesis + Vocos neural vocoder",
-      "notes": "React 18 + Vite. Vocos silent output fixed 19 Mar. WAV export. Browser-only.",
+      "strategic_role": "Voice creator — formant synthesis + Vocos neural vocoder; routing abstraction for entire FoxxeLabs voice stack",
+      "notes": "React 18 + Vite. Vocos silent output fixed 19 Mar. WAV export. Browser-only. Routing layer: XTTS v2 (identity-critical) / StyleTTS2 (batch/speed). Feeds Macalla/AfterWords via todd-primary voice clone.",
       "created_approx": "2026-03"
     },
     {
@@ -190,7 +203,7 @@
       "next_action": "Keep projects.json current",
       "depends_on": [],
       "strategic_role": "FoxxeLabs project registry and session context",
-      "notes": "Created 19 Mar 2026. Contains projects.json, roadmap.md, reports/.",
+      "notes": "Created 19 Mar 2026. Contains projects.json, roadmap.md, reports/, macalla/PRD.md.",
       "created_approx": "2026-03-19"
     },
     {
@@ -293,8 +306,8 @@
       "deadline": null,
       "next_action": "Phase 1 implementation per PRD v1.2",
       "depends_on": ["Mnemos", "Radharc"],
-      "strategic_role": "Visual intelligence layer — spatial reasoning over Mnemos knowledge geometry",
-      "notes": "PRD v1.2 produced in first Duel session. Distinct from Radharc (geometry) and Aislinge (consolidation).",
+      "strategic_role": "Visual intelligence layer — spatial reasoning over Mnemos knowledge geometry; GMM drift detection triggers Macalla training",
+      "notes": "PRD v1.2 produced in first Duel session. Distinct from Radharc (geometry) and Aislinge (consolidation). Phase 1 GMM layer feeds Macalla training trigger.",
       "created_approx": "2026-03"
     },
     {
@@ -383,9 +396,9 @@
       "blocked_by": null,
       "deadline": null,
       "next_action": "Revisit post-dissertation",
-      "depends_on": ["Mnemos", "Someday"],
+      "depends_on": ["Mnemos", "Someday", "Macalla", "Glór"],
       "strategic_role": "Digital legacy avatars — University of Souls concept",
-      "notes": "Versioned checkpoints (Todd-2025, Todd-2026). Needs: ElevenLabs voice cloning, Mnemos knowledge base, dissertation complete. Someday is the entry point.",
+      "notes": "Versioned checkpoints (Todd-2025, Todd-2026). Needs: Macalla (voice/reasoning weights), Mnemos (episodic RAG), Glór/ElevenLabs (voice clone), Someday (entry point). Macalla is the training pipeline that makes this possible.",
       "created_approx": "2024-01"
     },
     {
