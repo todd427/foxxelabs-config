@@ -1,7 +1,7 @@
 {
   "_meta": {
     "description": "FoxxeLabs project registry. Facts only — Claude derives priority ranking at session start.",
-    "updated": "2026-04-04",
+    "updated": "2026-04-22",
     "weightings": {
       "note": "Todd's current priority weightings for Claude to use in ranking",
       "deadline_pressure": "high",
@@ -84,9 +84,9 @@
       "blocked_by": "Post-viva slot (June 2026+); Iris not yet built",
       "deadline": null,
       "next_action": "Post-viva: create repo, set up training environment on Iris",
-      "depends_on": ["Mnemos", "Aislinge", "Leargas", "Glór"],
+      "depends_on": ["Mnemos", "Aislinge", "Leargas", "Glór", "Breith"],
       "strategic_role": "Personalized LLM pipeline — accumulates Todd's voice and reasoning via punctuated QLoRA; backbone for AfterWords/toddBot",
-      "notes": "Irish: echo/resonance (MAK-ul-uh). Base model: Qwen/Qwen3-8B-Instruct. Training machine: Iris (RTX 5080). Corpus: Mnemos weighted by recency + Aislinge salience. Training trigger: Léargas GMM drift detection. Dual-mode: thinking (AfterWords queries) / non-thinking (voice output). Versioned checkpoints: Todd-YYYY-MM. Novel contribution: GMM-annotated LoRA at solo-dev scale — potential paper post-viva. PRD v0.2 at foxxelabs-config/macalla/PRD.md.",
+      "notes": "Irish: echo/resonance (MAK-ul-uh). Base model: Qwen/Qwen3-8B-Instruct. Training machine: Iris (RTX 5080). Corpus: Mnemos weighted by recency + Aislinge salience. Training trigger: Léargas GMM drift detection. Judgment trigger: Breith decision→outcome pairs (DPO/ORPO preference signal) — shifts training from voice fidelity alone to judgment fidelity. Dual-mode: thinking (AfterWords queries) / non-thinking (voice output). Versioned checkpoints: Todd-YYYY-MM. Novel contribution: GMM-annotated LoRA at solo-dev scale — potential paper post-viva. PRD v0.2 at foxxelabs-config/macalla/PRD.md.",
       "created_approx": "2026-04-02"
     },
     {
@@ -123,9 +123,9 @@
       "blocked_by": null,
       "deadline": null,
       "next_action": "Swarm coordination protocol; SFI funding letter cost breakdown (Q2 2026)",
-      "depends_on": ["Aislinge", "Mnemos"],
+      "depends_on": ["Aislinge", "Mnemos", "Féith"],
       "strategic_role": "Core research — distributed AI swarm developing selfhood through developmental mechanisms",
-      "notes": "Deliberately slow-burn. Peekaboo milestone target 2028-2029. Machine: Iris (RTX 5080, 128GB). IRC scaffold done. Isaac Sim 5.1.0 planned. Neurosymbolic hybrid architecture under consideration (SNN/Loihi 3 layer).",
+      "notes": "Deliberately slow-burn. Peekaboo milestone target 2028-2029. Machine: Iris (RTX 5080, 128GB). IRC scaffold done. Isaac Sim 5.1.0 planned. Neurosymbolic hybrid architecture under consideration (SNN/Loihi 3 layer). Node control plane mesh-only via Féith.",
       "created_approx": "2024-06"
     },
     {
@@ -203,7 +203,7 @@
       "next_action": "Keep projects.json current",
       "depends_on": [],
       "strategic_role": "FoxxeLabs project registry and session context",
-      "notes": "Created 19 Mar 2026. Contains projects.json, roadmap.md, reports/, macalla/PRD.md.",
+      "notes": "Created 19 Mar 2026. Contains projects.json, roadmap.md, reports/, and PRDs for macalla, legion, learning-companion, breith, comhoibri, feith.",
       "created_approx": "2026-03-19"
     },
     {
@@ -317,10 +317,10 @@
       "status": "stable",
       "blocked_by": null,
       "deadline": null,
-      "next_action": "Expand signal sources; build Fionn BI counterpart",
+      "next_action": "Post-viva: upgrade to Margú coworker (wrap in Comhoibrí base class, add weekly content calendar, attribution tracking from Díol conversions)",
       "depends_on": ["Mnemos"],
-      "strategic_role": "Marketing and sales intelligence MCP agent for FoxxeLabs",
-      "notes": "Deployed eric.foxxelabs.ie. Tools: ask_eric, get_ranking, get_signals, get_digest, run_monitor. Current ranking: Anseo Books (92) > Sceal + Foxxe Frey backlist (78). Non-Irish name deliberate — commercial voice.",
+      "strategic_role": "Marketing and sales intelligence MCP agent for FoxxeLabs; becomes Margú coworker post-Comhoibrí Phase 2.5",
+      "notes": "Deployed eric.foxxelabs.ie. Tools: ask_eric, get_ranking, get_signals, get_digest, run_monitor. Current ranking: Anseo Books (92) > Sceal + Foxxe Frey backlist (78). Non-Irish name deliberate — commercial voice. Existing surfacing issue across sessions resolved by Comhoibrí wrapping (runs on schedule vs waits to be invoked).",
       "created_approx": "2026-02"
     },
     {
@@ -413,6 +413,45 @@
       "strategic_role": "Academic and creative publication platform",
       "notes": "Single placeholder commit. tionol = assembly, gathering. No development timeline.",
       "created_approx": "2026-03"
+    },
+    {
+      "name": "Féith",
+      "repo": null,
+      "url": "https://feith.foxxelabs.ie",
+      "status": "active",
+      "blocked_by": null,
+      "deadline": null,
+      "next_action": "Iris join when hardware online; formal ACL policy in Headscale post-viva; feith/RUNBOOK.md with operational details",
+      "depends_on": [],
+      "strategic_role": "Private mesh network — trust boundary separating OAuth public tier from private-tier services (Faire, Macalla, Comhoibrí, Breith, Legion nodes, hardware)",
+      "notes": "Irish: sinew, vein, strand (FAY). WireGuard + Headscale on Fly.io lhr. Four nodes live: Rose, Daisy (primary exit), Lava, mobile. Iris planned. Capability gate — enables 300-line Comhoibrí substrate without auth/tenancy scaffolding. ARCH v0.1 at foxxelabs-config/feith/PRD.md. Operational details (Headscale config, onboarding, recovery) pending RUNBOOK.md.",
+      "created_approx": "2026-02"
+    },
+    {
+      "name": "Comhoibrí",
+      "repo": null,
+      "url": null,
+      "status": "pre-development",
+      "blocked_by": "Post-viva slot (June 2026+)",
+      "deadline": null,
+      "next_action": "Post-viva: build Phase 0 substrate (~300 lines Python + SQLite base class). Single weekend target.",
+      "depends_on": ["Féith"],
+      "strategic_role": "Coworker substrate — turns existing MCP servers into five agentic coworkers (Builder, Operator, Margú, Díol, Scheduler) with queues, standups, and handoffs. Foundation for the AGI-coworker bet.",
+      "notes": "Irish: collaborator, co-worker. Private-tier (Féith-only). PRD v0.1 at foxxelabs-config/comhoibri/PRD.md. Four primitives: persistent queue, self-direction, reporting cadence, inter-coworker handoff. Deliberately not a multi-agent framework — human-on-top-of-loop. Six Todd-facing MCP tools plus CLI. Build sequence: Phase 0 substrate → Phase 1 Builder → Phase 2 Operator → Phase 2.5 Eric upgrade to Margú → Phase 2.75 Díol → Phase 3 Scheduler → Phase 4 Researcher+Editor (optional).",
+      "created_approx": "2026-04"
+    },
+    {
+      "name": "Breith",
+      "repo": null,
+      "url": null,
+      "status": "pre-development",
+      "blocked_by": "Post-viva slot (June 2026+); depends on Comhoibrí Phase 0",
+      "deadline": null,
+      "next_action": "Markdown logging at /home/Projects/breith/log.md (today). SQLite + MCP build post-viva weekend.",
+      "depends_on": ["Féith", "Comhoibrí", "Rialú", "Aislinge", "Mnemos"],
+      "strategic_role": "Decision-outcome loop — evaluation layer for every AI-assisted system in the FoxxeLabs stack; produces preference signal for Macalla adapter training. The missing measurement layer that turns AI assistance from plausibility-optimised to judgment-optimised.",
+      "notes": "Irish: judgment, verdict, birth — the moment of commitment. Private-tier (Féith-only). PRD v0.1 at foxxelabs-config/breith/PRD.md. Five MCP tools (log_decision, attach_outcome, pending, query, metrics). Six build phases: Phase 0 markdown → Phase 1 SQLite+MCP → Phase 2 Comhoibrí integration → Phase 3 Aislinge wiring → Phase 4 metrics → Phase 5 Macalla training signal at ~200 outcome-attached pairs. Every grant/deny in a Comhoibrí standup auto-creates a Breith record.",
+      "created_approx": "2026-04"
     }
   ]
 }
