@@ -14,7 +14,7 @@ Grep `DELETE-WHEN:` in the affected codebase to find the inline marker.
 **Code:** `mnemos` master `349ef14` — `server/retrieval.py` `dense_query`
 **Inline marker:** `DELETE-WHEN: Chroma upgraded past 1.5.2 (or migrated off Chroma)`
 **Discovery brief:** `mnemos/docs/mnemos/cc_brief_chroma_workaround_as_built.md`
-**Upstream bug report:** `mnemos/docs/mnemos/chroma_eq_false_bug_report.md` (drafted, not yet filed)
+**Upstream bug report:** https://github.com/chroma-core/chroma/issues/7032 — commented 2026-05-18 with our predicate matrix, uniformity check, and workaround (issue OP describes the same metadata-vs-HNSW divergence class). Local draft at `mnemos/docs/mnemos/chroma_eq_false_bug_report.md`.
 
 **What's broken upstream.** On the production 82k-chunk Mnemos collection, any Chroma `where` clause involving `is_fiction=False` (`$eq:False`, `$ne:True`, `$in:[False]`, `$nin:[True]`, `$in:[False,True]`) raises `InternalError('Error executing plan: Internal error: Error finding id')`. `$eq:True` works. Full-corpus scan ruled out heterogeneous metadata. Hypothesis: orphan ID in HNSW that the True-predicate's candidate set circumstantially avoids.
 
