@@ -1,10 +1,10 @@
 # <span style="color:#a02020">FoxxeLabs — Project Roadmap</span>
 
-## <span style="color:#1e5a8a">As of 15 May 2026 (v2)</span>
+## <span style="color:#1e5a8a">As of 15 May 2026 (v2.1)</span>
 
 **Author:** Todd McCaffrey / FoxxeLabs
 **Maintained by:** Claude (Anthropic Opus 4.7) on instruction
-**Supersedes:** v1 (4 April 2026) — git history preserves prior
+**Supersedes:** v2 (15 May 2026) — minor corrections; v1 (4 April 2026) — major rewrite
 
 ---
 
@@ -47,6 +47,7 @@ PRODUCTS & PLATFORMS
   Agora           — multi-persona debate engine (deployed private, NEW since v1)
   Taca            — GDPR venting research demonstrator (NEW since v1)
   ucahub          — UCA dissertation public hub (+ stats.ucahub.ie)
+  slambridge      — bridge bidding trainer (slambridge.ie, public good)
   AfterWords      — digital legacy avatars (parked; depends on Macalla)
 
 RESEARCH PROGRAMMES
@@ -74,11 +75,12 @@ Derived ranking (May 2026):
 3. **Cognitive Stack maintenance** — Mnemos health, Aislinge phase progression
 4. **Cló MVP** — La Witch: Birthday EPUB import → German translation → epubcheck-clean export
 5. **Glór Phase 2** — prosody normalisation (gates Scéal migration)
-6. **Macalla** — post-viva, gated on Aislinge Phase 6+ stability
-7. **Imeall** — Phase 0 schema agreement; post-viva build
-8. **Miteo** — parked until viva + lit-review chapter + one of (BFT draft / Cló MVP)
-9. **Legion** — slow-burn, SFI letter Q3 2026
-10. **Articles + papers pipeline** — MIRM paper drafting begins post-viva
+6. **Féith hardening** — Macalla prerequisite; see dedicated section below
+7. **Macalla** — post-viva, gated on Féith hardening + Aislinge Phase 6+ stability
+8. **Imeall** — Phase 0 schema agreement; post-viva build
+9. **Miteo** — parked until viva + lit-review chapter + one of (BFT draft / Cló MVP)
+10. **Legion** — slow-burn, SFI letter Q3 2026
+11. **Articles + papers pipeline** — MIRM paper drafting begins post-viva
 
 ---
 
@@ -168,6 +170,7 @@ Imeall and Cumadóir branch off this trunk — Imeall as a structural layer abov
 2. OneDrive + Google Drive ingest gaps — academic material backlog
 3. 200k chunk pressure point — ~Jan 2027 at current growth rate
 4. Mnemos may need a prod-tier instance before next bulk ingest (cold-start latency)
+5. **Qdrant migration evaluation** — post-viva technical spike Jun–Jul 2026 (ChromaDB fine to ~300k; beyond that Qdrant's on-disk HNSW is materially more RAM-efficient)
 
 #### Corpus rules (firm)
 - **First-person only** — ingest Todd's words, never other people's words
@@ -176,15 +179,13 @@ Imeall and Cumadóir branch off this trunk — Imeall as a structural layer abov
 ---
 
 #### <span style="color:#1e5a8a">Tairseach</span> (NEW — inflow / skim service)
-**Status:** Scaffolded; sibling to Mnemos with its own lifecycle
-**Role:** ArXiv / RSS / PDF watch-folder as v0 sources. Filters and lightly summarises before Mnemos sees the material.
+**Status:** PRD v0.1 committed (`foxxelabs-config/tairseach/PRD.md`); pre-implementation
+**Role:** ArXiv / RSS / PDF watch-folder as v0 sources. Filters and lightly summarises before Mnemos sees the material. **Phase 1 parallel-track to Imeall** per Imeall PRD v0.2.
 
 Distinct from Mnemos because:
 - Different ingest velocity (continuous vs episodic)
 - Different retention policy (most items decay quickly)
 - Different downstream consumers (Imeall edge-extraction, Cumadóir fiction-prompting)
-
-Phase 0: v0 sources defined. Phase 1: connector implementations + decay policy.
 
 ---
 
@@ -248,24 +249,24 @@ Withings BPM Core (grey, integrated into George), Withings Body Smart, George vi
 ---
 
 #### <span style="color:#1e5a8a">Imeall</span> (`todd427/imeall`) — **NEW (15 May 2026)**
-**Status:** PRD v0.1 committed today; pre-MVP
+**Status:** PRD v0.2 + Schema v0 + Business Plan v0.1 committed; pre-MVP
 **Tagline:** *The edge-map of human understanding.*
 
 Three layers — Personal edge-map / Translation between maps / Collective edge-map (federated). Built atop Mnemos as substrate; LLM as commodity infrastructure.
 
-Phase 0 gate: **schema v0 agreed**. Open questions: claim granularity, confidence representation, contradiction handling.
+Phase 0 gate: **schema v0 frozen** ✅. Tairseach promoted to Phase 1 parallel-track. MVP gate strengthened to include frontier-overlap test, multi-field validation, second-user requirement, 16-week time-box.
 
 Post-viva build target. Sits in priority queue alongside Macalla and Miteo (see Sequencing below).
 
 ---
 
 #### <span style="color:#1e5a8a">Cumadóir</span> — **NEW since v1**
-**Status:** Light scaffold
+**Status:** PRD v0.1 committed (`foxxelabs-config/cumadoir/PRD.md`); pre-implementation
 **Role:** Speculative fiction surface. Separate from knowledge work. Connects incoming scientific literature (via Tairseach) to fiction-in-progress in Todd's authorial voice (via Macalla once trained).
 
 Edge-cluster output from Imeall is one of Cumadóir's input streams.
 
-Post-Macalla integration target. Standalone scaffold OK before then.
+Gated on Tairseach P0 + Imeall Phase 1 MVP + at least one trained Macalla adapter. Realistic earliest build: mid-2027.
 
 ---
 
@@ -273,6 +274,7 @@ Post-Macalla integration target. Standalone scaffold OK before then.
 **Status:** Pre-development; PRD v0.2 + VOICE.md committed to `foxxelabs-config/macalla/`
 **Machine:** **Iris (operational since 25 April 2026)** — RTX 5080, 128GB DDR5, Core Ultra 9 285K, Strix 1200W Platinum, Arctic Liquid Freezer III Pro 360
 **Build target:** Summer 2026 (post-viva)
+**Gating:** Féith hardening must complete first — see dedicated section below.
 
 #### Status correction
 v1 listed Iris as "not yet built." Iris is now production-ready following PSU burn-in (2-hour combined CPU+RAM+GPU soak, zero anomalies). The original be Quiet! 1000W died on first power-on; Strix 1200W replacement validated.
@@ -286,6 +288,7 @@ v1 listed Iris as "not yet built." Iris is now production-ready following PSU bu
 - Foxxe Frey backlist (70+ novels) for monologue-mode prose calibration
 - Léargas GMM drift detection as training trigger
 - Versioned checkpoints: Todd-YYYY-MM
+- Training endpoint binds to **Iris-Féith address only** — Féith hardening prerequisite is not optional.
 
 #### Do not begin implementation before 12 June 2026.
 
@@ -328,10 +331,12 @@ Mothú + Léargas + Colainn + Aislinge form a *disembodied* homeostasis case. Le
 
 #### Anseo near-term backlog
 - Feed pills, post polish, communities, mod queue, EasyMDE, translation, themes, OAuth2/Kindle/MS, BugTracker P2, civics quiz, daily digest, JOIN_HOSTNAME per-env
+- **Django admin IP allowlist middleware** — half-day; uses Féith Daisy exit IP as auth channel. Real security debt with Stór launch pending.
 
 #### Anseo longer-term
 - Community wiki, code embeds, chat (Redis), performance, LLM moderation, learning communities, promotions/SumUp, book app
 - **Discourse as deliberation layer** (forum.anseo.irish via DiscourseConnect SSO) — deferred until ~50–200 active Anseo users; keep in architectural diagram as "deliberation layer (future)"
+- **Anseo → Fly.io migration** (Féith Phase 3) — large, post-viva; unblocks full private networking
 
 ---
 
@@ -390,16 +395,18 @@ Import La Witch: Birthday EPUB → translate chapter 1 to German via editor → 
 ### <span style="color:#1e5a8a">Rialú</span> (`todd427/rialu`)
 **Status:** Deployed at rialu.ie · Phase 1 complete
 **Auth:** Cloudflare Zero Trust + Google OAuth, `todd@foxxelabs.ie`
+**Known issue:** MCP connector broken (May 2026) — diagnosis pending; debugging playbook from April Cloudflare-fronted FastMCP issues may apply
 
 #### Next
-1. Phase 2 — Machine agents (Daisy, Iris, Lava). Rose decommissioned.
+0. **Tier 0 acute:** diagnose and fix MCP connector failure
+1. Phase 2 — Machine agents (Daisy, Iris, Lava, Synology). Rose excluded (unreliable; pending Féith removal).
 2. Anthropic usage API poller (daily) — budget tab per-project
 3. Timeline + Kanban views in Projects tab
 
 ---
 
 ### <span style="color:#1e5a8a">Fiosru</span> — **NEW since v1**
-**Status:** Operational — parallel agentic worker system on Fly.io
+**Status:** Last confirmed working 23 April 2026 (Chapter 2 lit review run, 4 sections, ~7,200 words, 2m 39s, $17.28). **Currently broken per session 15 May; diagnosis pending.**
 **Role:** Spawn multiple Claude workers in parallel for research / drafting / synthesis
 
 #### Four bugs found and fixed in April 2026
@@ -411,8 +418,8 @@ Import La Witch: Birthday EPUB → translate chapter 1 to German via editor → 
 #### Fork rule (firm)
 **Never call `fork_result` with `wait_seconds` in same turn as `fork_task`.** Fork for cognitive-flow preservation; collect result on Todd's next message.
 
-#### Largest run to date
-Chapter 2 lit review — 4 parallel sections (§§1–4), ~7,200 words, 2m 39s wall time, $17.28 total cost
+#### Tier 0 acute
+Diagnose current failure. Whatever broke since 23 April needs investigation, not assumption. ~half-day to diagnose; another half to fix once identified.
 
 ---
 
@@ -423,8 +430,25 @@ Chapter 2 lit review — 4 parallel sections (§§1–4), ~7,200 words, 2m 39s w
 ---
 
 ### <span style="color:#1e5a8a">Féith</span> — **NEW since v1**
-**Status:** WireGuard / Headscale private mesh — feith.foxxelabs.ie
-**Topology:** Single-layer Headscale on Fly.io · any-to-any mesh · Daisy as primary exit node
+**Status:** Operational at Phase 0 — feith.foxxelabs.ie
+**Topology:** Headscale on Fly.io LHR · any-to-any mesh (implicit ACLs) · Daisy primary exit node
+**Operational nodes:** Daisy, Lava, mobile
+**Pending Phase 1:** Iris join, Synology join
+**Pending decision:** Rose removal (untrusted — overnight crashes; see Féith Hardening section)
+**PRD:** `foxxelabs-config/feith/PRD.md` (note: PRD node table needs Rose+Synology update)
+
+**Critical architectural role:** trust boundary separating OAuth-exposed public tier (Mnemos, Taisce, Rialú, Eric, Git-mcp, Sentinel, Flyer) from private tier (Faire, Macalla, Comhoibrí, Breith, Legion control plane, hardware nodes). Private-tier services skip OAuth/rate-limit/audit/tenant scaffolding because they assume caller-is-Todd — that simplification (~300 lines vs ~3,000) only holds while the boundary itself is healthy. **Féith health is a hard prerequisite for any private-tier service shipping safely**, including Macalla.
+
+---
+
+### <span style="color:#1e5a8a">Eric</span> — **NEW since v1**
+**Status:** Live at eric.foxxelabs.ie · repo `todd427/mark`
+**Known issues:** Trust deficit not resolved by April hallucination-guard patch (6675a20); UI bug pending; scope review likely more productive than further patches
+
+Eric exposes 10 tools (`ask_eric`, `generate_ad_pack`, `get_digest`, `get_mood`, `get_pipeline`, `get_ranking`, `get_signals`, `get_terra_brief`, `run_monitor`, `set_mood`). Surface area may be the actual problem.
+
+#### Tier 0 acute
+Scope review before another patch: which tools are actually used? Could surface be cut by half? Trust restoration is a structural question, not a single-bug fix.
 
 ---
 
@@ -432,6 +456,7 @@ Chapter 2 lit review — 4 parallel sections (§§1–4), ~7,200 words, 2m 39s w
 **Status:** GDPR-compliant venting research demonstrator
 **Requirements:** WCAG AAA · GDPR consent splash · privacy/about pages · soft turn cap (MAX_TURNS=6, SOFT_WARN=4)
 **Stack:** WebNN for ML inference
+**Open:** completion status unclear — feeds dissertation citation or independent paper? Decide post-viva.
 
 ---
 
@@ -440,6 +465,16 @@ Chapter 2 lit review — 4 parallel sections (§§1–4), ~7,200 words, 2m 39s w
 **Update since v1:** Was "pre-development." Now operational.
 
 18 personas · 6 collections · WCAG AAA · Duel (dual-Claude interface) identified as structural REM-sleep implementation
+
+---
+
+### <span style="color:#1e5a8a">slambridge</span> (`todd427/slam-auction-interactive`)
+**Status:** Live at slambridge.ie · Railway · public good
+**Stack:** Python Flask + Claude API (Haiku), static HTML frontend
+**Costs:** ~$1.50/month
+**Activity:** Low-touch maintenance; scenario additions as feedback arrives; no active promotion or stats collection
+
+Bridge bidding trainer: 30+ scenarios, two modes (Single Decision + Full Auction with AI opponents), Bridge 101 tutorial. Anseo community at "Slambridge" exists for player discussion.
 
 ---
 
@@ -489,11 +524,11 @@ Unparking requires **all three**:
 
 ---
 
-### <span style="color:#1e5a8a">Sionnach / dirs / Park / CyberSafer / tionol</span>
+### <span style="color:#1e5a8a">CyberSafer / Sionnach / dirs / Park / tionol</span>
+- **CyberSafer** — **live** (public good); not actively collecting stats; not promoted; **ICO registration outstanding** (Tier 0 acute admin item)
 - **Sionnach** — complete; maintenance only; foundation for Agora
 - **dirs** — complete; deploy on Iris (now available)
-- **Park** — active; EAS build pending
-- **CyberSafer** — stable, paused; ICO registration decision pending
+- **Park** — active; EAS build pending. Decision needed: continue or formally close
 - **tionol** — placeholder; post-viva
 
 ---
@@ -520,7 +555,8 @@ Unparking requires **all three**:
 | **Daisy** | Daily driver (as of May 2026) | Ubuntu, RTX 5060 OC, 128GB RAM | Development, Aislinge runs, GPU work |
 | **Iris** | Operational (PSU validated 25 Apr 2026), currently powered off | Ubuntu 24.04, RTX 5080, 128GB DDR5, Core Ultra 9 285K, Strix 1200W Platinum, Arctic Liquid Freezer III Pro 360 | Macalla training, Léargas scaling, Legion sim |
 | **Lava** | Active (new March 2026) | ASUS ProArt P16, AMD Ryzen AI 9 HX 370, Radeon 890M, 64GB RAM, 3.73TB, WSL2/Windows | Laptop / travel |
-| **Rose** | **Decommissioned** | — | — |
+| **Rose** | **Active but unreliable** — overnight crashes suggest end-of-life | Windows + WSL2, RTX 5070, 64GB | Untrusted; Féith mesh removal pending (see Féith Hardening) |
+| **Synology** | To be onboarded to Féith | NAS | Backups, archives, working-data store |
 
 ---
 
@@ -539,6 +575,13 @@ Tairseach (inflow)
   ├── Mnemos (filtered hand-off)
   ├── Imeall (edge-extraction)
   └── Cumadóir (fiction prompts)
+
+Féith (trust boundary)
+  ├── gates Macalla deployment
+  ├── gates Comhoibrí MCP
+  ├── gates Breith MCP
+  ├── gates Faire dashboard
+  └── gates Legion control plane
 
 Sionnach
   ├── ga-say (theme system)
@@ -570,17 +613,50 @@ Cló
 
 ---
 
+## <span style="color:#a02020">Féith Hardening — Macalla Prerequisite</span>
+
+Féith is the trust boundary that lets private-tier services skip the OAuth / rate-limit / audit / tenant scaffolding a public service requires. Macalla, Comhoibrí, Breith, Faire, and Legion control plane all assume Féith is healthy. **Féith hardening therefore precedes Macalla deployment, not parallels it.**
+
+| Task | Effort | Why it gates Macalla |
+|---|---|---|
+| **Rose removal decision** | Hours | Untrusted node + overnight crashes inside the trust boundary is an active gap. Three options: take Rose off Féith (recommended), replace Rose, or document accepted risk (worst — explicitly built a trust boundary then placed an untrusted node inside it). |
+| **Iris joins Féith** | ~10 min once powered on | Macalla training endpoint binds to Iris-Féith address only. Without this, Macalla either delays or ships less safely. |
+| **Synology joins Féith** | ~15 min + PRD update | Backup/archive store reachable from mesh nodes. PRD currently does not include Synology — topology section needs update. |
+| **Féith RUNBOOK** | ~1 day | Headscale config, node onboarding, coordinator-down recovery, key rotation, service-binding verification. Becomes urgent the first time something breaks at 11pm. PRD itself flags this gap. |
+| **Phase 2 ACL policy** | ~half day | Replace implicit any-to-any with declared groups (personal devices / coworker nodes / hardware nodes). Recommended once node count ≥5 (Iris + Synology takes us there). |
+
+**Total effort: 2–4 days of focused work.** Not large in hours, but cannot be skipped before Macalla training begins. Slots into the late-May or immediate-post-viva window.
+
+The Anseo admin IP allowlist middleware (under Anseo + Stór above) is a separate small task that uses Féith as the auth channel but is not a Féith project itself.
+
+---
+
+## <span style="color:#a02020">Tier 0 Acute Infrastructure Debt</span>
+
+Items that are degraded and should be addressed before they compound. None alone is a project; collectively they are 2–4 days of focused work that removes silent tail risks before they compound into post-viva blockers.
+
+| Item | Effort | Risk if deferred |
+|---|---|---|
+| **fiosru diagnose + fix** | ~1 day | No parallel-worker support for MIRM/BFT paper drafting; Imeall MVP cannot run multi-stream extraction |
+| **Rialú MCP connector** | ~half day | Manual MCP management during Macalla buildout when MCP work will be intensive |
+| **Mnemos R2 backup cron** | ~1–2 days | Single point of failure on most load-bearing infrastructure; compounds with corpus growth |
+| **Eric scope review + UI bug** | ~half day review, work TBD | Untrustworthy marketing pipeline during Stór launch |
+| **CyberSafer ICO registration** | ~half day admin | Compliance gap on a live public service |
+| **Rose decision** | Hours | Untrusted node inside Féith trust boundary (see Féith Hardening) |
+
+---
+
 ## <span style="color:#a02020">Post-Viva Sequencing (Open)</span>
 
-Three large post-viva projects compete for the same slot:
+Three large post-viva projects compete for the same slot. **All three assume Féith hardening is complete** (see preceding section) since each ships into the private tier.
 
 | Project | Effort | Trigger | Strategic value |
 |---|---|---|---|
-| **Macalla** | Months | Iris available ✅; Aislinge Phase 6 stable | Enables AfterWords; voice-anchored output for Cumadóir |
-| **Imeall** | Months (Phase 1 alone is 3 months per PRD) | Schema v0 agreed | Personal frontier visibility; eventually federation |
+| **Macalla** | Months | Féith hardened ✅; Iris available ✅; Aislinge Phase 6 stable | Enables AfterWords; voice-anchored output for Cumadóir; unblocks several downstream items |
+| **Imeall** | Months (Phase 1 alone is 4 months per PRD v0.2 with Tairseach parallel) | Schema v0 frozen ✅ | Personal frontier visibility; eventually federation |
 | **Miteo** | Phases 0–3 over months | All three gates (lit review + viva + BFT/Cló) | Directing AI case study; publishable research |
 
-<span style="color:#cc6600">**Decision deferred.**</span> Worth being explicit with yourself before mid-June — running all three in parallel will fragment attention. Recommendation: pick one as primary, one as background, one as parked.
+<span style="color:#cc6600">**Decision deferred.**</span> Worth being explicit with yourself before mid-June — running all three in parallel will fragment attention. Recommendation: Macalla primary (largest downstream unblock + Iris sunk cost); Imeall secondary (PRD work done, build is mechanical); Miteo parked per its own gating until lit review + (BFT/Cló) clears.
 
 ---
 
@@ -593,15 +669,20 @@ Three large post-viva projects compete for the same slot:
 - **Mnemos:** R2 backup cron; OneDrive + Google Drive ingest gaps
 - **Glór:** Phase 2 prosody normalisation
 - **Aislinge:** Phase 6 second-order consolidation (if Phase 5 evaluation passes gap-topic threshold)
+- **Tier 0 acute infrastructure:** fiosru, Rialú MCP, Mnemos R2, Eric scope review, CyberSafer ICO, Rose decision
+- **Féith hardening:** Iris join, Synology join, RUNBOOK, Phase 2 ACLs — before Macalla training begins
 
 ### <span style="color:#1e5a8a">Short term (May–June 2026)</span>
 - **Submit dissertation** 12 June 2026
 - **Viva** sometime June (date pending)
 - Anseo Sprint 3a — visual white-label
+- Anseo admin IP allowlist middleware (Féith Daisy exit IP as auth channel)
 - Scéal — PRD + Anseo post endpoint + TheInterview demo
 - Léargas Phase 1 — GMM drift detection API
 
 ### <span style="color:#1e5a8a">Medium term (post-viva, Summer 2026)</span>
+- **Féith hardening complete** (if not done pre-viva)
+- **Mnemos Qdrant migration evaluation** — Jun–Jul technical spike
 - **Macalla / Imeall / Miteo** — primary/background/parked decision
 - Agora — already deployed; continue persona expansion
 - Legion — swarm coordination protocol, SFI letter Q3 2026
@@ -615,8 +696,10 @@ Three large post-viva projects compete for the same slot:
 - **Macalla:** Todd-2026 → Todd-2027 → AfterWords integration
 - Legion: Peekaboo experiment (target 2028–2029)
 - Imeall Layer 2 (translation) → Layer 3 (federation, alpha)
+- Cumadóir build (post-Macalla pen-name adapters)
 - Cló: Phase 2 white-label
 - **Reasons for Discord** trade book — ongoing
+- Anseo → Fly.io migration (Féith Phase 3)
 - *Paper:* GMM-annotated LoRA at solo-dev scale (post-viva venue TBD)
 
 ---
@@ -637,9 +720,11 @@ Three large post-viva projects compete for the same slot:
 4. Mnemos query: `"project status active FoxxeLabs"` — surface surprises since last session
 5. Check Daisy for overnight long-running jobs (Aislinge, Scéal render, Radharc)
 6. Iris currently powered off — power-up if Macalla training or Léargas scaling work is on deck
+7. Féith node health — `tailscale status` from a mesh node before any private-tier work
 
 ---
 
-*FoxxeLabs Roadmap v2 — 15 May 2026*
+*FoxxeLabs Roadmap v2.1 — 15 May 2026*
 *Generated-with: Claude Opus 4.7*
-*Diff vs v1: 11 new projects added, 4 status corrections, 1 framework rename (BFT → MIRM as dissertation theory), Rose decommissioning, Iris operational, post-viva sequencing decision flagged as open.*
+*Diff vs v2: Rose status corrected (alive but unreliable, Féith removal pending); Synology added to machine inventory and Féith Phase 1; Féith Hardening tier added as explicit Macalla prerequisite; Tier 0 Acute Infrastructure Debt section added (fiosru / Rialú MCP / Mnemos R2 / Eric / CyberSafer ICO / Rose); Rialú and Fiosru and Eric current-status updates; slambridge added to inventory; CyberSafer status corrected (live, not paused); Mnemos Qdrant migration line added; Tairseach and Cumadóir PRDs noted as committed; Imeall PRD bumped to v0.2 reference.*
+*Diff vs v1: 11 new projects added, 4 status corrections, 1 framework rename (BFT → MIRM as dissertation theory), Iris operational, Féith hardening tier added as Macalla prerequisite, post-viva sequencing decision flagged as open.*
