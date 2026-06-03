@@ -1,8 +1,10 @@
 # <span style="color:#5B8DBE">PRD: mdvi</span>
 
+> <span style="color:#C97B5C">**SUPERSEDED 2026-06-03.**</span> Scope absorbed into Cló's manuscript editor (TipTap/ProseMirror). Cló handles rendered-while-editing markdown, multi-file project context, persistent storage, and version history natively. The remaining unserved category — quick single-file CLI edits — is adequately covered by `vim file.md` on source. Body retained below for reference. Do not implement. If Cló's scope ever narrows and the editor surface is dropped, revisit this PRD.
+
 <span style="color:#888">A vi-shaped markdown editor with live styling.</span>
 
-<span style="color:#888">**Status:** Spec only. Not started. Triggered post-viva (after 12 June 2026).</span>
+<span style="color:#888">**Status:** Superseded by Cló editor scope, 2026-06-03.</span>
 <span style="color:#888">**Owner:** Todd. **Date:** 2026-06-03.</span>
 <span style="color:#888">**Working name:** `mdvi`. Final name TBD — see §10.</span>
 
@@ -95,12 +97,6 @@ Decision deferred. The PRD references `mdvi` throughout for tractability.
 
 ## <span style="color:#5B8DBE">11. Trigger to revisit</span>
 
-<span style="color:#C97B5C">Post-viva (after 12 June 2026)</span>, and only if these conditions hold:
+<span style="color:#C97B5C">Superseded by Cló (2026-06-03).</span> Revisit only if Cló's scope narrows and its editor surface is dropped. Otherwise, do not pick this up.
 
-- Viva passed.
-- No higher-priority Macalla / Anseo / Stór blockers.
-- Todd still wants this enough to commit 4–6 weeks. Reading markdown in vim has been adequate for ~30 years; the question is whether the daily friction justifies the build cost.
-
-If yes: scope a v0.1 sprint, pick the name, decide build-vs-fork-Helix, set a 4-week timebox.
-
-If no: shelve, revisit annually.
+Original trigger (now moot): Post-viva, conditional on viva passing, no higher-priority Macalla / Anseo / Stór blockers, and continued willingness to commit 4–6 weeks against ~30 years of adequate vim-on-source as the baseline.
