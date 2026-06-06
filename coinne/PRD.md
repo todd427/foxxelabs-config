@@ -9,7 +9,7 @@
 **Owner:** Todd McCaffrey / FoxxeLabs
 **Status:** Pre-implementation. **Parked until post-viva** (dissertation due 12 June 2026).
 **Implementation repo:** `todd427/coinne` (not yet created)
-**Siblings:** [Dialann](../dialann/PRD.md) (system of record), [Geall](../geall/PRD.md) (watchdog)
+**Siblings:** [Dialann](../dialann/PRD.md) (system of record), [Geall](../geall/PRD.md) (watchdog) · **cross-channel sibling:** [Litir](https://github.com/todd427/anseo/blob/master/docs/litir_prd.md) (the same boundary-translator on the *email* channel — see §1)
 
 ---
 
@@ -18,6 +18,8 @@
 Coinne is the conversational front door of the talk-to-record operator system. It answers inbound voice and message, holds a directed slot-filling conversation **in the caller's own dialect**, grounds messy human input (townlands, landmarks, "out the Ramelton road past the GAA pitch") against a locale gazetteer, confirms aloud, and emits a structured booking into Dialann.
 
 It is the **boundary-translator** — the seam where unstructured human talk becomes machine state. It exists because the live truth of a small operation currently lives only in one person's head, on the radio, and on paper; Coinne is the point at which talk first becomes record.
+
+Coinne is the **voice-channel** deployment of this primitive. **Litir** (the Anseo mail client, `todd427/anseo` → `docs/litir_prd.md`, Part 5A) is its **email-channel sibling**: the same `extract → ground → propose → write to the record` engine, with inbound email instead of inbound voice, writing into the Anseo `Event` model / Comhordú instead of Dialann. The channels and extraction schemas differ; the primitive is shared. Treat an improvement to one as a candidate for the other.
 
 The role is deliberately narrow: Coinne *captures and confirms*. It does not store (Dialann's job), it does not watch (Geall's job), it does not optimise assignment (a deterministic solver behind Dialann's adapter). One hat, done well.
 
@@ -34,16 +36,15 @@ This is the *get-in* differentiator. It is not where the system *wins* — that 
 ## <span style="color:#a02020">3. Position in the stack</span>
 
 ```
-INBOUND (phone / SMS / message)
-        │
-        ▼
-   ┌───────────────┐
-   │    COINNE     │  answer → dialect extract → ground → confirm
-   └──────┬────────┘
-          │ structured booking
-          ▼
+INBOUND
+  voice → [ COINNE ]   (this PRD)
+  email → [ LITIR  ]   (Anseo repo, litir_prd.md Part 5A)
+              │
+              │ structured booking / event  (extract → ground → propose)
+              ▼
      [ DIALANN ]  ──watched by──▶ [ GEALL ]
    (system of record)            (watchdog)
+   ↑ Coinne writes here;  Litir writes to Anseo Event model / Comhordú
 ```
 
 - **Chassis:** built on the **Taca** harness (GDPR consent flow, turn-cap, WebNN inference target, WCAG AAA). Taca's role *inverts* — non-directive listening becomes directed extraction — but the consent/turn/accessibility scaffolding is shared.
@@ -107,4 +108,4 @@ Per Eric's brief: **land in trades** (plumbers/electricians/breakdown — compet
 
 ---
 
-*End of PRD v0.1. Companion docs: [Dialann](../dialann/PRD.md), [Geall](../geall/PRD.md), [Taca], [Macalla PRD](../macalla/PRD.md), [Comhordú], [FoxxeLabs Roadmap](../roadmap.md).*
+*End of PRD v0.1. Companion docs: [Dialann](../dialann/PRD.md), [Geall](../geall/PRD.md), [Litir](https://github.com/todd427/anseo/blob/master/docs/litir_prd.md) (email-channel sibling), [Taca], [Macalla PRD](../macalla/PRD.md), [Comhordú], [FoxxeLabs Roadmap](../roadmap.md).*
