@@ -3,7 +3,7 @@
 
 *Workshop draft — circulating to Pamela Melroy and Les Johnson for technical and policy read. Not for distribution.*
 
-*Author: Todd McCaffrey, FoxxeLabs Limited. Draft date: May 2026.*
+*Author: Todd McCaffrey, FoxxeLabs Limited. Draft date: May 2026; revised June 2026.*
 
 ---
 
@@ -57,7 +57,7 @@ The lunar surface has its own gravity well, but a shallow one. Reaching lunar or
 
 The interesting fact about lunar surface delta-v geometry is that the Moon is *not* a cheap place to launch missions back to Earth orbit. Lunar surface to LEO costs roughly 6 km/s (you have to fight Earth's gravity well from the wrong direction); lunar surface to GEO is about 2.5 km/s. So the Moon is a good base for serving cislunar and outbound traffic, and a poor base for serving Earth-orbit traffic. This asymmetry is why the right mental model for lunar industry is *supplying itself and points outward*, not *supplying Earth or Earth's orbits*.
 
-Permanent shadow regions at the lunar south pole contain water ice. The most reliable estimates put the recoverable inventory in the hundreds of millions of tonnes, plausibly more, though extraction at industrial rates remains undemonstrated. Polar peaks of near-eternal sunlight provide continuous solar power for surface operations. The combination — accessible water plus continuous power plus the gravity-well asymmetry favouring outbound supply — makes the lunar south pole the unique location for cislunar industrial bootstrap. Every serious roadmap converges on this. So does every serious national program currently funded.
+Permanent shadow regions at the lunar south pole contain water ice. How much is honestly unknown: mapped onto a terrestrial resource classification, the polar ice is an inferred resource at best — one impact assay (LCROSS, 5.6 ± 2.9 wt% water in the Cabeus ejecta), neutron-spectrometry hydrogen signals at tens-of-kilometres resolution, and aggregate estimates that span orders of magnitude depending on assumptions about the ice's physical form. The widely cited figures in the hundreds of millions of tonnes are remote-sensing extrapolations, not measurements; the first in-situ assays arrive with Chang'e-7 (2026) and the revived VIPER (late 2027), and extraction at industrial rates remains undemonstrated. Polar peaks of near-eternal sunlight provide continuous solar power for surface operations. The combination — accessible water plus continuous power plus the gravity-well asymmetry favouring outbound supply — makes the lunar south pole the unique location for cislunar industrial bootstrap. Every serious roadmap converges on this. So does every serious national program currently funded.
 
 ### <span style="color:#2d7a8a">What the geography implies</span>
 
@@ -196,6 +196,20 @@ The bear case for Layer 1, rarely stated out loud by lunar-economy advocates bec
 The honest framing is that Layer 1 is *robust* against a moderately good Starship outcome ($500–1500/kg to LEO) and *fragile* against an aggressively good Starship outcome (sub-$200/kg). The cislunar architecture loses some of its self-justifying economic logic if Earth-to-orbit launch is too cheap, because the case for any off-Earth production rests on launch costs being expensive enough to justify the alternative. Anyone forecasting Layer 1 has to forecast both numbers and be honest about the sensitivity. Most published analyses are not.
 
 The more interesting case, and the one that becomes important in Layer 2 and beyond, is that *propellant* is the easy product to displace with cheap launch, and lunar industry's resilience depends on moving up the value chain quickly — to oxygen for life support, to structural materials, to manufactured components — where the launch-cost-versus-production-cost arithmetic is more favourable to off-Earth supply. Layer 1 propellant is the door-opener for Layer 2 materials, not the endpoint. Operations and capital that close on propellant alone are vulnerable; operations and capital that use propellant to seed downstream production lines are robust.
+
+### <span style="color:#2d7a8a">Exporting momentum: the mass-driver complement</span>
+
+The propellant export carries two stacked uncertainties — the reserve, which Section 3 classifies honestly as inferred rather than proven, and the Starship break-even just described. There is a second lunar export architecture that carries neither, it is fifty years old, and its absence from the current discourse is another instance of the visibility bias Section 9 develops. O'Neill's lunar mass driver (NASA SP-428, 1977; bench hardware demonstrated above a thousand g with Kolm at MIT by 1980) throws sintered regolith off the Moon electromagnetically. Nothing is heated or expelled; the delivery velocity is set by track length and current rather than exhaust chemistry; the energy is solar electricity, at roughly 2.9 MJ/kg for a slug thrown to lunar escape — about a fifth of the energy required merely to crack the same kilogram of silica into heavy, recondensing exhaust products. A dumb slug tolerates thousands of g, so the track is hundreds of metres rather than kilometres.
+
+The deeper argument for the mass driver is the stock-versus-flow distinction the propellant thesis blurs. Polar water is a stock: finite, unmeasured, and simultaneously the future settlement's drinking water, breathable oxygen, radiation shielding, and agriculture. Heinlein named the failure mode in 1966 — a colony that exports its own hydrosphere down a one-way gravity well is eating capital and booking the drawdown as income, and the same gravity asymmetry that makes the export profitable makes the refill impossible. Regolith is a flow surplus: effectively infinite, available equatorially with no prospecting, and carrying zero life-support option value. An export economy built on thrown regolith has no depletion date; one built on exported water has a depletion date whose distance depends entirely on a reserve we have not measured.
+
+What kept the mass driver on paper for fifty years was never the launcher — it was the catch. O'Neill's architecture required open-loop ballistic delivery to a passive catcher near L2, sixty-four thousand kilometres away, because 1977 had no guidance package that could ride a thousand-g projectile at any mass or cost that closed. Launch dispersion integrated unbounded over the transit, and the catcher had to be enormous and lucky. That single constraint is now the most thoroughly retired risk in spaceflight: cubesat-class autonomous GNC, optical and radar terminal tracking, propulsive terminal guidance, and routine autonomous rendezvous have all flown operationally. The modern architecture packages N tonnes of sintered regolith into a freighter round carrying one minimal guidance unit — a trim thruster, a transponder, a retroreflector — throws sub-escape (roughly 1.7–1.8 km/s) into a low lunar catch orbit rather than ballistic to L2, and catches with an active, manoeuvring catcher, with a patient solar-electric tug ferrying accumulated mass from lunar orbit to L1. That splits O'Neill's one never-solved problem into two already-solved ones: a sub-escape throw to orbit, and routine autonomous rendezvous.
+
+What this changes for Layer 1 is the exposure profile. Bulk lunar mass delivered to L1 — radiation shielding, structural feedstock, and oxygen via molten-regolith electrolysis at the node (oxygen is roughly 85 percent of a LOX/LH2 load by mass, and regolith is roughly 43 percent oxygen) — decouples from both of Layer 1's stacked uncertainties at once. It does not depend on the polar reserve, because regolith is everywhere; and it is far less sensitive to the Starship break-even, because thrown mass at 2.9 MJ/kg of solar electricity competes on different arithmetic than electrolysed cryogens. Propellant remains the residual market for what genuinely needs stored chemical energy — crew transfers and high-thrust burns — which is a smaller market still riding the unmeasured reserve, but the architecture's bulk-logistics layer no longer rides it with them.
+
+The capability that gates this is the same capability that gates beamed power delivery into the permanently shadowed regions and depot rendezvous generally: deterministic delivery of mass or energy across cislunar distance. These are one problem in three costumes, and the problem is demonstrable now, at cubesat scale, in LEO — a guided freighter and an autonomous catcher proving closed-loop mass transfer across a meaningful gap, for the budget of a smallsat mission. Section 12 places this demonstrator on the leverage list, because it is cheap, currently unowned by any program, and retires the one risk that has kept the mass driver on paper since 1977.
+
+One governance note belongs here rather than in a footnote. A system that can deterministically place tonnes of mass at a chosen cislunar point is, by construction, a precision kinetic delivery system; the catch problem and the targeting problem are the same problem, and adding guidance welds the export catapult and the bombardment catapult more tightly together, not less. Heinlein understood this too. A real lunar mass driver is a treaty question alongside an engineering one, and the governance work belongs in the same Layer 0 forums Section 4 identifies.
 
 ### <span style="color:#2d7a8a">What Layer 1 success looks like</span>
 
@@ -499,9 +513,11 @@ For state actors, in priority order:
 
 *Third, fund cislunar SSA federation and standards work.* The unglamorous longest-payoff leverage point. Money goes to standards bodies, federated data infrastructure, and the policy-staff capacity to drive these forums. Single-digit millions per year per major agency, payoff window fifty years.
 
-*Fourth, fund a second heavy-lift redundancy program.* Programmatic insurance against single-vendor Starship dependence. Higher per-flight cost than Starship, but the redundancy value is real enough to justify the program even if the second vehicle never reaches cost parity. Blue Origin is the natural counterparty in the US context; Themis-successor in Europe; nationally-funded programs in China and India will emerge regardless.
+*Fourth, fund a closed-loop cislunar delivery-and-catch demonstrator.* A guided freighter and an autonomous catcher at cubesat scale, in LEO and then lunar orbit, demonstrating deterministic mass transfer across a meaningful gap. Smallsat-mission budget, no current owner, and it retires the single risk that has kept the lunar mass driver on paper since 1977 — the same capability that gates beamed power delivery and depot logistics (Section 5).
 
-*Fifth and least visible — participation in international governance forums.* ISO, ITU, IADC, UN COPUOS, bilateral agency working groups. Headcount and attention rather than capital. The actor that staffs these forums credibly shapes the architecture; the actor that does not, doesn't.
+*Fifth, fund a second heavy-lift redundancy program.* Programmatic insurance against single-vendor Starship dependence. Higher per-flight cost than Starship, but the redundancy value is real enough to justify the program even if the second vehicle never reaches cost parity. Blue Origin is the natural counterparty in the US context; Themis-successor in Europe; nationally-funded programs in China and India will emerge regardless.
+
+*Sixth and least visible — participation in international governance forums.* ISO, ITU, IADC, UN COPUOS, bilateral agency working groups. Headcount and attention rather than capital. The actor that staffs these forums credibly shapes the architecture; the actor that does not, doesn't.
 
 For commercial actors, in priority order:
 
@@ -531,13 +547,14 @@ The geography is destiny. The politics is contingent. The window for shaping the
 
 ---
 
-*FoxxeLabs Limited · May 2026*
+*FoxxeLabs Limited · May 2026, revised June 2026*
 
-*Workshop draft complete (Sections 1–13, ~18.4k words). Next-pass action items:*
+*Workshop draft complete (Sections 1–13, ~19.2k words). Next-pass action items:*
 
 - *Verify Charania and Olds 2006 propellant mass-balance citation in §5.*
 - *Pressure-test the chip-refresh arithmetic in §8 against current NVIDIA/AMD/Intel ASIC roadmaps with Les Johnson.*
 - *Pressure-test the L1-depot funding-anomaly argument and the European-leverage claim in §4, §9, §10 with Pamela Melroy.*
+- *New June 2026 material — the §3 reserve correction and the §5 mass-driver subsection — needs the Les Johnson read; the beamed-energy lineage and the catch architecture are squarely his area. Full development in mass-driver-proposal.md and the irg-venice-2026 deck in this directory.*
 - *Tighten the railroads/Standard-Oil analogies (§6, §5) — strong for SciAm/WIRED, possibly too cute for Issues.*
 - *The Anthropic-SpaceX paragraph in §6 needs a fact-check before any publication.*
 - *Extract venue-tailored versions per articles/cislunar-roadmap/README.md sequencing.*
