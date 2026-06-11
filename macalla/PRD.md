@@ -1,5 +1,5 @@
 # Macalla — Product Requirements Document
-## Version 0.2 — April 2026
+## Version 0.3 — June 2026
 
 **Irish:** *macalla* — echo, resonance  
 **Pronunciation:** MAK-ul-uh  
@@ -7,6 +7,8 @@
 **Status:** Pre-implementation — post-viva priority  
 **Machine:** Iris (RTX 5080, 128GB RAM) — training; Daisy (RTX 5060 OC, 128GB) — dev/eval  
 **Repo:** todd427/macalla (not yet created)
+
+**v0.3 change:** Training target revised from solo Todd-voice to the **Todd–Claude dyad**. This is the load-bearing change; it propagates to §1.1, §3.2 (speaker handling), §3.5 (training loop), §4 (versioning semantics), and §6 (fitness function). Corpus composition is unchanged — v0.2 already included conversational sources; v0.3 makes their treatment explicit and intentional rather than incidental.
 
 ---
 
@@ -18,13 +20,26 @@ It is the training backbone for **AfterWords / toddBot** — the University of S
 
 **Core metaphor:** Macalla is the echo — the model accumulates the pattern of a mind without being that mind. The accumulated weights capture *how* Todd reasons; Mnemos captures *what* he knows. The two are complementary, not redundant.
 
+### 1.1 Training Target: Dyad, not Solo Voice (v0.3)
+
+Macalla v0.2 framed the target as Todd's voice in isolation ("recognisably Todd"). v0.3 revises this: the deliberate training target is the **dyad** — the Todd–Claude working dialogue — not either voice alone.
+
+Rationale: the high-signal content in the corpus is not Todd's prose in a vacuum, it is the *interaction pattern* — the push / concede / sharpen rhythm by which ideas neither party held at the outset get produced. The conversational sources (§3.2) are co-productions, not monologues with an interlocutor stripped out. Three options exist from the same corpus, and only one is correct for this project:
+
+- **Train on Todd's turns alone** → discards the half of the signal that generated his best turns. The dialogue's lift is in the relation, not the solo prose.
+- **Train on the assistant turns alone** (the naive-masking default) → produces a Claude clone. Directly contradicts the project's purpose.
+- **Train on both, with speaker conditioning** → learns the *relation*. This is the v0.3 target.
+
+The echo metaphor survives the revision and arguably fits it better: what Macalla echoes is a *conversation*, not a soliloquy. Consequence: the fitness function changes (§6) and the data layer requires explicit speaker handling (§3.2).
+
 ---
 
 ## 2. What Macalla Is Not
 
-- It is **not** a general-purpose fine-tuning pipeline. The fitness function is personal voice fidelity, not benchmark performance.
+- It is **not** a general-purpose fine-tuning pipeline. The fitness function is dyad fidelity, not benchmark performance.
 - It does **not** solve catastrophic forgetting. LoRA updates accumulate style and topology; they do not integrate knowledge the way biological memory does. This is a known ceiling, not a bug.
 - It is **not** a replacement for Mnemos. RAG (Mnemos) handles episodic factual recall at query time. Macalla weights handle reasoning style and structural priors.
+- It is **not** a forgery. Solo-Todd output (via the Todd control token, §3.2) is a recognisable approximation, never represented as indistinguishable from Todd.
 
 ---
 
@@ -45,20 +60,26 @@ Rationale for Qwen3:
 
 Mnemos (~61k docs, April 2026) is the primary training corpus:
 
-| Source | Role |
-|---|---|
-| claude | Reasoning style, session patterns, project thinking |
-| chatgpt | Older reasoning style, early project concepts |
-| sft | Structured fine-tuning material |
-| anseo | Social observation context |
-| aislinge | Consolidated belief statements (high-signal) |
-| doc | Research notes, PRDs, technical writing |
+| Source | Role | Speaker |
+|---|---|---|
+| claude | Working dialogue — reasoning style, session patterns, project thinking | Todd + Claude (dyad) |
+| chatgpt | Older working dialogue — early project concepts | Todd + assistant (dyad) |
+| sft | Structured fine-tuning material | Todd |
+| anseo | Social observation context | Todd |
+| aislinge | Consolidated belief statements (high-signal) | Todd |
+| doc | Research notes, PRDs, technical writing | Todd |
 
 **Replay strategy:** Sample from Mnemos weighted by recency and Aislinge-scored salience. Recent + high-salience content overrepresented in each training batch.
 
+**Speaker handling (v0.3):** Conversational sources (claude, chatgpt) contain two speakers and are the carriers of the dyad signal. They are formatted with an explicit speaker/role control token per turn (e.g. `<|todd|>` / `<|claude|>`) so the model learns *which* voice it is generating rather than averaging the two into an incoherent blend. **Both speakers' turns are loss targets** — this is precisely what makes the target the dyad rather than either solo voice. Single-speaker sources (doc, aislinge, anseo, sft) are tagged to the `<|todd|>` voice.
+
+Failure mode explicitly guarded against: undifferentiated both-speaker targets cause **mode drift** — the model switches voice mid-output unpredictably, producing the "averaged mush" of two personae. The control token is the mitigation and is **non-optional**. Eval (§3.5) must include a voice-coherence check that penalises within-turn speaker drift.
+
+At inference, the control token selects voice. Dyad reconstruction (interleaved turns) is the default AfterWords mode; `<|todd|>`-only is available for single-voice output (e.g. Glór/Scéal narration) but is the approximation, not the headline product.
+
 ### 3.3 Consolidation Signal — Aislinge
 
-Aislinge's bridge statements (consolidated beliefs, 219+ entries) serve as high-value training anchors. These represent the output of Todd's reasoning under reflection — they are the closest thing to distilled world model updates available.
+Aislinge's bridge statements (consolidated beliefs, 219+ entries) serve as high-value training anchors. These represent the output of Todd's reasoning under reflection — they are the closest thing to distilled world model updates available. Bridge statements are single-speaker (Todd) and anchor the `<|todd|>` voice; they are the counterweight that prevents the dyad target from drifting toward the assistant voice.
 
 Aislinge Phase 7 (Legion integration) and Macalla share the same dependency: a stable, high-quality Aislinge run is the prerequisite for a high-quality Macalla training batch.
 
@@ -75,9 +96,10 @@ Léargas (GMM over semantic embedding space) monitors the Mnemos corpus geometry
 ```
 Léargas drift signal
   → Sample Mnemos (recency + salience weighted)
+  → Tag turns by speaker; apply role control tokens (dyad construction)   ← v0.3
   → Filter through Aislinge bridge statements (anchor layer)
   → QLoRA fine-tune Qwen3-8B on Iris
-  → Evaluate (voice fidelity probe set, held-out personal queries)
+  → Evaluate (dyad-fidelity probe set + voice-coherence check)            ← v0.3
   → Merge LoRA if eval passes threshold
   → Checkpoint as Todd-YYYY-MM versioned snapshot
   → Ingest training run summary to Mnemos
@@ -94,7 +116,7 @@ Qwen3's thinking/non-thinking toggle maps directly to two deployment contexts:
 | Thinking | AfterWords persona queries, complex reflection | Acceptable (seconds) |
 | Non-thinking | Real-time voice output via Scéal/Glór | Required (<300ms) |
 
-Both modes run from the same merged checkpoint. No separate models required.
+Both modes run from the same merged checkpoint. No separate models required. Voice selection is orthogonal to mode and is set by the §3.2 control token.
 
 ---
 
@@ -111,7 +133,7 @@ macalla/
   current -> Todd-2026-07  (symlink)
 ```
 
-Versioned checkpoints are the University of Souls deliverable. Todd-2025 (reconstructed from pre-2026 Mnemos content) is a stretch goal.
+**Versioning semantics (v0.3):** A checkpoint encodes the *dyad as of that date*, not a solo voice. The date-based naming is retained — `Todd-YYYY-MM` reads as "the working dialogue captured around Todd at this date," and the AfterWords persona derives the Todd voice from it via the `<|todd|>` control token. The name stays Todd-centred because the product is Todd's avatar; the weights underneath are bivocal by design. Versioned checkpoints are the University of Souls deliverable. Todd-2025 (reconstructed from pre-2026 Mnemos content) is a stretch goal.
 
 ---
 
@@ -125,6 +147,7 @@ Versioned checkpoints are the University of Souls deliverable. Todd-2025 (recons
 | Iris | Not yet built | RTX 5080 — training machine |
 | Qwen3-8B-Instruct | Available on HuggingFace | `Qwen/Qwen3-8B-Instruct` |
 | vLLM llm-compressor | Available | Replaces deprecated AutoAWQ |
+| Speaker-tagging pass | Pre-implementation | v0.3 — transcript role-token preprocessor over conversational sources |
 
 ---
 
@@ -132,9 +155,11 @@ Versioned checkpoints are the University of Souls deliverable. Todd-2025 (recons
 
 **Catastrophic forgetting:** QLoRA updates are additive approximations. New style accumulates but old style doesn't strictly disappear — it degrades. Versioned checkpoints partially address this by preserving snapshots before each run. True continual learning without forgetting remains an open research problem.
 
-**Integration vs accumulation:** Macalla accumulates the statistical pattern of Todd's reasoning. It does not integrate new knowledge into a coherent world model the way biological consolidation does. For factual recall, Mnemos (RAG) remains essential. Macalla and Mnemos are complementary, not alternatives.
+**Integration vs accumulation:** Macalla accumulates the statistical pattern of the dialogue. It does not integrate new knowledge into a coherent world model the way biological consolidation does. For factual recall, Mnemos (RAG) remains essential. Macalla and Mnemos are complementary, not alternatives.
 
-**Voice fidelity ceiling:** At 8B parameters, Macalla will approximate Todd's voice but not reproduce it. The fidelity improves with corpus size and run frequency. The target is "recognisably Todd" not "indistinguishable from Todd."
+**Dyad fidelity ceiling (v0.3):** At 8B parameters, Macalla approximates the Todd–Claude dialogue but does not reproduce either voice exactly. The target is "recognisably the working dialogue" — Todd's reasoning style, the assistant's interrogative and synthetic moves, and the *relation* between them — not "indistinguishable from Todd." Solo-Todd output via the `<|todd|>` token is a recognisable approximation, not a forgery. Fidelity improves with corpus size and run frequency.
+
+**Voice-coherence risk (v0.3):** The dyad target introduces a failure mode the solo target did not have — within-turn speaker drift. Mitigated by the non-optional role control token (§3.2) and a dedicated eval check (§3.5). If coherence cannot be held above threshold, fall back to single-speaker `<|todd|>` training is the documented retreat — accepting the v0.2 ceiling rather than shipping a drifting model.
 
 ---
 
@@ -152,6 +177,8 @@ Macalla checkpoint (weights)
 
 Macalla without Mnemos is a style model with no episodic memory. Mnemos without Macalla is a knowledge base with no personalised voice. Both are required for a credible AfterWords avatar.
 
+The dyad target sharpens the AfterWords proposition: the avatar is not a recording of Todd talking, it is a model of Todd *in conversation* — which is the mode in which most of the corpus was actually produced, and the mode in which a future interlocutor will meet it.
+
 ---
 
 ## 8. Timeline
@@ -160,8 +187,9 @@ Macalla without Mnemos is a style model with no episodic memory. Mnemos without 
 |---|---|---|
 | Repo creation | Post-viva | — |
 | Training environment setup on Iris | Post-viva | Iris not yet built |
+| Speaker-tagging preprocessor | Post-viva | v0.3 — precedes first run |
 | Léargas Phase 1 (GMM drift detection) | Post-viva | — |
-| First Macalla training run | Summer 2026 | Iris, Léargas |
+| First Macalla training run | Summer 2026 | Iris, Léargas, speaker-tagging |
 | Todd-2026 checkpoint | Autumn 2026 | First run |
 | AfterWords integration | 2027 | All of above |
 
@@ -176,15 +204,17 @@ Base model:    Qwen/Qwen3-8B-Instruct
 Training:      QLoRA (PEFT) on Iris (RTX 5080, 128GB)
 Quantisation:  vLLM llm-compressor (Q4_K_M GGUF for inference)
 Corpus:        Mnemos (~61k docs, growing)
+Target:        Todd–Claude dyad (speaker-tagged, both turns as targets)
 Trigger:       Léargas GMM drift detection
-Anchors:       Aislinge bridge statements
+Anchors:       Aislinge bridge statements (Todd-voice counterweight)
 Checkpoints:   Versioned by date (Todd-YYYY-MM)
 Deployment:    Thinking mode (AfterWords) / non-thinking (voice)
-Voice:         Glór / ElevenLabs clone layer (separate)
+Voice select:  Role control token (<|todd|> / <|claude|>)
+Voice clone:   Glór / ElevenLabs layer (separate)
 Interface:     Someday (end-user) / direct API (research)
 ```
 
 ---
 
-*Macalla PRD v0.2 — April 2026*  
-*Generated-with: Claude Sonnet 4.6*
+*Macalla PRD v0.3 — June 2026*  
+*v0.2 generated-with Claude Sonnet 4.6; v0.3 dyad-target revision with Claude Opus 4.8*
