@@ -1,6 +1,8 @@
 # <span style="color:#2d7a8a">Streamed-Grain Construction at Earth–Moon L1 — A Radiation-Pressure Bound</span>
 
-<span style="color:#666">Working note for the cislunar roadmap. Companion to the mass-driver complement (master draft §5). Status: negative result with derived design rule. Pre-Les-Johnson; numbers reproducible via `model.py`.</span>
+<span style="color:#666">Working note for the cislunar roadmap. Companion to the mass-driver complement (master draft §5). Status: negative result with derived design rule. Pre-Les-Johnson.</span>
+
+> <span style="color:#b5651d">**Canonical engine:** the model that produces every number below lives in **`todd427/teorainn`** (`model.py`), not here. This file is the findings narrative for the roadmap; the physics has a single source of truth in that repo. Run `python3 model.py` there to reproduce.</span>
 
 ## <span style="color:#2d7a8a">The proposition tested</span>
 
