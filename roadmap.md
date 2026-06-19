@@ -221,7 +221,7 @@ Aislinge *is* the sleep process — not a tool that runs on the manifold. NREM e
 #### Next
 1. **Phase 6 — Second-order consolidation** — run Aislinge on `aislinge` source itself (consolidating the consolidations)
 2. **Phase 7 — Legion integration** — initialise swarm with consolidated belief layer as prior world model
-3. **Phase 8 (PRD committed)** — REM `rem_pass.py` dual-model nightly perturbation on Léargas `frontier()` components
+3. **Phase 8 (PRD committed)** — REM `rem_pass.py` single local-model (Phi-3.5-mini, 4-bit on GPU) nightly perturbation on high-entropy Léargas GMM components
 
 ---
 
@@ -464,7 +464,7 @@ Scope review before another patch: which tools are actually used? Could surface 
 **Status:** Deployed (private) — duel.foxxelabs.ie via Cloudflare Zero Trust; public directed to GitHub
 **Update since v1:** Was "pre-development." Now operational.
 
-18 personas · 6 collections · WCAG AAA · Duel (dual-Claude interface) identified as structural REM-sleep implementation
+18 personas · 6 collections · WCAG AAA · Duel (dual-Claude interface) — the design analog that inspired the Aislinge REM concept (as-built REM runs a single local model, not Duel)
 
 ---
 
