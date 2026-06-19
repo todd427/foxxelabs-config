@@ -3,7 +3,7 @@
 **Version:** 0.1 — initial PRD
 **Date:** 6 May 2026
 **Owner:** Todd McCaffrey / FoxxeLabs Limited
-**Status:** Design — Phase 0 not started
+**Status:** In progress — Phases 0+1 shipped (reranker OFF, regressed); Phase 3b (Qdrant) drafted and decoupled from 3a, pulled forward after the 2026-06-19 Chroma HNSW incident
 **Related repo:** `todd427/mnemos`
 **Implementation briefs:** `mnemos/docs/mnemos/cc_brief_cross_encoder_reranker.md` (Phases 0+1)
 
@@ -188,10 +188,10 @@ The order matters and is non-obvious in places.
 
 | Phase | Brief | Status |
 |---|---|---|
-| 0 + 1 | `mnemos/docs/mnemos/cc_brief_cross_encoder_reranker.md` | Drafted |
+| 0 + 1 | `mnemos/docs/mnemos/cc_brief_cross_encoder_reranker.md` | **Shipped.** Phase 0 baseline frozen (nDCG@10 0.596 on re-annotated GT, 2026-06-19); Phase 1 reranker built but **OFF by default** — A/B regressed quality + blew the latency budget. |
 | 2 | TBD | Not yet drafted |
-| 3a (embedder) | TBD post-viva | Not yet drafted |
-| 3b (Qdrant) | TBD post-viva | Not yet drafted |
+| 3a (embedder) | TBD | Not yet drafted; reuses the Qdrant adapter from 3b |
+| 3b (Qdrant) | `mnemos/docs/mnemos/cc_brief_qdrant_migration.md` | **Drafted** (2026-06-19). Pulled forward + **decoupled from 3a** — storage-only swap, not stack-wide. |
 
 ---
 
