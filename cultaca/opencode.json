@@ -1,0 +1,30 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "anthropic/claude-opus-4-8",
+  "provider": {
+    "iris": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Iris (local vLLM)",
+      "options": {
+        "baseURL": "http://iris.YOUR-TAILNET.ts.net:8000/v1",
+        "apiKey": "not-required"
+      },
+      "models": {
+        "qwen3-coder": {
+          "name": "Qwen3-Coder 30B (Iris)",
+          "tools": true
+        }
+      }
+    },
+    "anthropic": {
+      "options": {
+        "baseURL": "https://api.anthropic.com/v1"
+      }
+    },
+    "openai": {
+      "options": {
+        "baseURL": "https://api.openai.com/v1"
+      }
+    }
+  }
+}

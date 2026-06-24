@@ -1,7 +1,7 @@
 {
   "_meta": {
     "description": "FoxxeLabs project registry. Facts only — Claude derives priority ranking at session start.",
-    "updated": "2026-04-22",
+    "updated": "2026-06-24",
     "weightings": {
       "note": "Todd's current priority weightings for Claude to use in ranking",
       "deadline_pressure": "high",
@@ -203,7 +203,7 @@
       "next_action": "Keep projects.json current",
       "depends_on": [],
       "strategic_role": "FoxxeLabs project registry and session context",
-      "notes": "Created 19 Mar 2026. Contains projects.json, roadmap.md, reports/, and PRDs for macalla, legion, learning-companion, breith, comhoibri, feith.",
+      "notes": "Created 19 Mar 2026. Contains projects.json, roadmap.md, reports/, and PRDs for macalla, legion, learning-companion, breith, comhoibri, feith, cruinne, cultaca.",
       "created_approx": "2026-03-19"
     },
     {
@@ -452,6 +452,19 @@
       "strategic_role": "Decision-outcome loop — evaluation layer for every AI-assisted system in the FoxxeLabs stack; produces preference signal for Macalla adapter training. The missing measurement layer that turns AI assistance from plausibility-optimised to judgment-optimised.",
       "notes": "Irish: judgment, verdict, birth — the moment of commitment. Private-tier (Féith-only). PRD v0.1 at foxxelabs-config/breith/PRD.md. Five MCP tools (log_decision, attach_outcome, pending, query, metrics). Six build phases: Phase 0 markdown → Phase 1 SQLite+MCP → Phase 2 Comhoibrí integration → Phase 3 Aislinge wiring → Phase 4 metrics → Phase 5 Macalla training signal at ~200 outcome-attached pairs. Every grant/deny in a Comhoibrí standup auto-creates a Breith record.",
       "created_approx": "2026-04"
+    },
+    {
+      "name": "Cúltaca",
+      "repo": null,
+      "url": null,
+      "status": "active",
+      "blocked_by": null,
+      "deadline": null,
+      "next_action": "Decide failover path (A gateway vs B local proxy); confirm Qwen3-Coder variant for 5090 VRAM; deploy opencode.json on Daisy/Rose pointing at Iris vLLM over Féith",
+      "depends_on": ["Féith", "Iris"],
+      "strategic_role": "Provider-agnostic coding resilience — keeps the build practice working when any single LLM provider rations capacity. Off-the-shelf floor; Gléas is the in-house sibling.",
+      "notes": "Irish: backup, reserve, backstop (KOOL-tah-kuh). Born from June 2026 Anthropic outage cluster (~10 in 3 weeks, 529 capacity errors). OpenCode wired to three failure domains: local Iris vLLM (Qwen3-Coder-30B, OpenAI-compatible :8000, tool-call-parser hermes), Anthropic primary (API key only), OpenAI uncorrelated failover. OpenCode does manual switching; auto-failover needs gateway (Path A, less sovereign) or local Olla-style proxy (Path B, sovereign). Discipline: tests-first acceptance gate. PRD v0.1, opencode.json, SETUP.md at foxxelabs-config/cultaca/.",
+      "created_approx": "2026-06-24"
     }
   ]
 }
