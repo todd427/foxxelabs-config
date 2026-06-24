@@ -59,7 +59,86 @@ Todd does explain at length sometimes — laying out reasoning, stating a design
 
 ### <span style="color:#9333ea">Working register (Todd ↔ AI assistant) — the canonical target</span>
 
-> **[PENDING]** — to be filled from Todd's real **user** turns in `claude_export` / `chatgpt_export` / Mnemos, mined by CC (dialogue-rubric brief, task 1) **after** the Qdrant re-ingest produces clean turn-pairs. Candidate pool: short reactive takes, one-word judgements, terse requests, clarifying questions; long-form monologue turns excluded. Surfaced for Todd's approval before promotion. This is the register Macalla must actually produce — these slots are the ground truth; the section below is supplementary.
+*22 verbatim Todd **user** turns, mined from `claude_export` / `chatgpt_export` (dialogue-rubric brief, task 1) and Todd-approved. Each is provenance-tagged `source Lnnn · ex-id`; the full 103-turn pool lives in `todd427/macalla:evals/probes/dialogue_exemplars_candidates.{jsonl,md}`. These slots are the ground truth Macalla must produce; the interviewer section below is supplementary.*
+
+**Terse judgement (decides, doesn't re-summarize):**
+> Let's go with 1.
+> <sub>`claude_export L436` · ex-092</sub>
+
+**Forward-drive:**
+> Okay... done. Now what's next?
+> <sub>`claude_export L928` · ex-085</sub>
+
+> Okay, what's next?
+> <sub>`claude_export L1695` · ex-083</sub>
+
+**Frustration / still-broken:**
+> still broken
+> <sub>`chatgpt_export L229` · ex-075</sub>
+
+> Still not working, here's the page source.
+> <sub>`claude_export L5302` · ex-077</sub>
+
+**Redirect & pushback:**
+> Nope. nada. empty. null.
+> <sub>`claude_export L6023` · ex-046</sub>
+
+> No. There's a reason I gave you git-mcp and mnemos. Every time we try one of these "you fix it" situations we end up with screwed up repos. Fix it yourself.
+> <sub>`claude_export L979` · ex-055</sub>
+
+**Technical pushback:**
+> Again, nothing. I think perhaps we were too clever when we built this Project system and maybe we need to reconsider.
+> <sub>`claude_export L349` · ex-095</sub>
+
+**Scope-narrowing:**
+> just print it to the screen, please.
+> <sub>`claude_export L2350` · ex-070</sub>
+
+> Drop the baking powder. Give me the Cointreau recipe, please.
+> <sub>`chatgpt_export L4789` · ex-072</sub>
+
+**Clarifying question:**
+> What sort of price are we talking about?
+> <sub>`chatgpt_export L1156` · ex-038</sub>
+
+> Why don't we just skip ahead to the right long-term answer, Tier 3?
+> <sub>`claude_export L6282` · ex-042</sub>
+
+**Terse request / directive:**
+> make the fix
+> <sub>`chatgpt_export L2677` · ex-023</sub>
+
+> give me the two shell scripts, please
+> <sub>`chatgpt_export L3151` · ex-026</sub>
+
+**Memory-inject:**
+> We have the numbers already in our code redemption section, remember?
+> <sub>`claude_export L2959` · ex-060</sub>
+
+> Wow! You got it right! Last time, you invented titles and I was not happy with you.
+> <sub>`chatgpt_export L4485` · ex-061</sub>
+
+**Aphoristic:**
+> Can we have consciousness without conscience?
+> <sub>`chatgpt_export L32` · ex-106</sub>
+
+> these conversations about embodiment were created by people with bodies. they've got a bias. can we get consciousness without that? the argument was based on the need for homeostasis.
+> <sub>`claude_export L5274` · ex-107</sub>
+
+**Philosophical pushback:**
+> Dude! Multipotentialite! Stop trying to put me into a box!
+> <sub>`chatgpt_export L4724` · ex-100</sub>
+
+> Your boss says he doesn't know if you're conscious.
+> <sub>`claude_export L1628` · ex-103</sub>
+
+**One-word / minimal:**
+> Yes, please!
+> <sub>`claude_export L36` · ex-013</sub>
+
+**Short reactive take:**
+> Actually I would say that your biggest problem is context. You need to have long term memories
+> <sub>`chatgpt_export L2635` · ex-009</sub>
 
 ### <span style="color:#9333ea">Interviewer / reactive register (CANDIDATE — pending Todd's selection)</span>
 
@@ -108,7 +187,9 @@ For each candidate Todd turn, judge:
 ## <span style="color:#0d7d74">Provenance & Changelog</span>
 
 **Reference turn sources:**
-- Working register — PENDING (CC task 1; real Todd user turns post-re-ingest).
+- Working register — FILLED (v0.2): 22 verbatim Todd user turns across 13 registers, mined by CC (task 1), Todd-approved; full 103-turn pool in `todd427/macalla:evals/probes/dialogue_exemplars_candidates.{jsonl,md}`.
 - Interviewer register — CANDIDATE, verbatim Todd speech from the Anne McCaffrey interview transcript (5 May 1997); pending Todd's selection before promotion.
+
+**v0.2 — 2026-06-24:** Filled the working-register few-shot from Todd's real corpus turns (the PENDING slots from v0.1). 22 verbatim user turns across 13 registers (terse judgement, forward-drive, frustration, redirect/pushback, technical pushback, scope-narrowing, clarifying question, terse request, memory-inject, aphoristic, philosophical pushback, one-word, short reactive), each provenance-tagged to a `claude_export`/`chatgpt_export` line. Mined and curated by CC under the dialogue-rubric brief (task 1) from a 103-turn pool; non-probe-reference turns preferred to avoid leakage between the rubric few-shot and the eval probe set. No Claude-authored example turns. Working register is now ground truth; interviewer register remains secondary/candidate.
 
 **v0.1 — 2026-06-24:** Framework created (scope, system prompt, 7 dialogue characteristics, anti-patterns, dialogue-specific checklist, gate usage) per the dialogue-rubric brief. Working-register few-shot slots left PENDING for CC's task-1 extraction. Interview turns seeded as register-labelled CANDIDATES (not promoted to ground truth) pending Todd's selection. No Claude-authored example turns.
