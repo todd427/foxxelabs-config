@@ -83,7 +83,7 @@ When the piece touches an ethical or philosophical question, state it in the pla
 
 ## Few-Shot Examples
 
-These are short passages demonstrating the voice in non-fiction register. Use them as calibration.
+These are short passages demonstrating the voice in non-fiction register. Use them as calibration. All three are real Todd passages — see provenance note below. Do not replace them with authored text.
 
 ---
 
@@ -97,17 +97,15 @@ These are short passages demonstrating the voice in non-fiction register. Use th
 
 **Example 2 — Stating a position under dispute:**
 
-> Consciousness isn't what happens when you add enough neurons. It's what happens when enough neurons have something at stake — something they can lose. That's the distinction that matters. Not complexity. Salience.
+> The depot is the market, not the regolith. Lunar water in a permanently shadowed crater is worth nothing. Lunar water electrolysed, cryogenically stored, and delivered to an L1 depot is worth whatever the next customer pays not to launch it from Earth.
 >
-> A thermostat is complex enough to regulate temperature. It is not conscious because nothing is at stake for it. When something goes wrong, the thermostat doesn't care. That indifference is the line.
+> The economics are the economics of that translation. Everything else is geology.
 
 ---
 
 **Example 3 — Ending a section:**
 
-> Engineers don't want to be told they're being replaced. Neither would you. But the more interesting question isn't whether it's happening — it obviously is — it's whether the person doing the replacing knows enough to notice when the replacement gets it wrong.
->
-> That's the job now. Not writing the code. Knowing when the code is lying.
+> Visible hardware without infrastructure is theatre. Infrastructure without visible hardware is invisible. The combination is what builds frontier economies.
 
 ---
 
@@ -120,8 +118,9 @@ Before passing the draft to Todd for his editorial pass:
 - [ ] Is there more than one joke/sardonic line? Cut the weaker one.
 - [ ] Are there any of the forbidden adverbs? Remove them.
 - [ ] Does the final sentence of each section land hard? If not, rewrite it.
-- [ ] Run through GPTZero or Originality.ai. Target: perplexity score above 25, burstiness above 0.7.
-- [ ] Todd's editorial pass — even 10 minutes of light editing shifts the statistical fingerprint significantly.
+- [ ] Todd's editorial pass — even 10 minutes of light editing shifts the voice from "close" to "his."
+
+**Deprecated checks (do not optimise against these):** Earlier versions targeted GPTZero / Originality.ai perplexity and burstiness scores. Removed in v0.2 — beating an AI detector is orthogonal to sounding like Todd, and optimising for the detector pulls the prose away from the voice, not toward it. Grade against the voice characteristics above, not a detector.
 
 ---
 
@@ -135,4 +134,13 @@ Before passing the draft to Todd for his editorial pass:
 
 ---
 
-*Derived from: Todd McCaffrey fiction corpus (Killing Ellay, Ellay, TSW, Dragon's Eye) and non-fiction notes via Mnemos. Version 0.1 — 2026-04-06.*
+## Provenance & Changelog
+
+**Few-shot example sources (all real Todd text, no authored calibration):**
+- Example 1 — Todd, agents-and-the-web argument.
+- Example 2 — Todd, *The Long Bootstrap* (cislunar roadmap), §5.
+- Example 3 — Todd, *The Long Bootstrap*, §9.
+
+**v0.2 — 2026-06-24:** Replaced Examples 2 and 3 (which had been Claude-authored — calibrating the voice toward the assistant rather than toward Todd) with real passages from Todd's own non-fiction. Kept Example 1. Demoted the detector-score checklist items. *Candidates pending Todd's approval — swap any passage that doesn't represent the voice.*
+
+**v0.1 — 2026-04-06:** Initial profile. Derived from Todd McCaffrey fiction corpus (Killing Ellay, Ellay, TSW, Dragon's Eye) and non-fiction notes via Mnemos.
