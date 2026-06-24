@@ -455,7 +455,7 @@
     },
     {
       "name": "Cúltaca",
-      "repo": null,
+      "repo": "todd427/cultaca",
       "url": null,
       "status": "active",
       "blocked_by": null,
@@ -463,7 +463,7 @@
       "next_action": "Decide failover path (A gateway vs B local proxy); confirm Qwen3-Coder variant for 5090 VRAM; deploy opencode.json on Daisy/Rose pointing at Iris vLLM over Féith",
       "depends_on": ["Féith", "Iris"],
       "strategic_role": "Provider-agnostic coding resilience — keeps the build practice working when any single LLM provider rations capacity. Off-the-shelf floor; Gléas is the in-house sibling.",
-      "notes": "Irish: backup, reserve, backstop (KOOL-tah-kuh). Born from June 2026 Anthropic outage cluster (~10 in 3 weeks, 529 capacity errors). OpenCode wired to three failure domains: local Iris vLLM (Qwen3-Coder-30B, OpenAI-compatible :8000, tool-call-parser hermes), Anthropic primary (API key only), OpenAI uncorrelated failover. OpenCode does manual switching; auto-failover needs gateway (Path A, less sovereign) or local Olla-style proxy (Path B, sovereign). Discipline: tests-first acceptance gate. PRD v0.1, opencode.json, SETUP.md at foxxelabs-config/cultaca/.",
+      "notes": "Irish: backup, reserve, backstop (KOOL-tah-kuh). Born from June 2026 Anthropic outage cluster (~10 in 3 weeks, 529 capacity errors). OpenCode wired to three failure domains: local Iris vLLM (Qwen3-Coder-30B, OpenAI-compatible :8000, tool-call-parser hermes), Anthropic primary (API key only), OpenAI uncorrelated failover. OpenCode does manual switching; auto-failover needs gateway (Path A, less sovereign) or local Olla-style proxy (Path B, sovereign). Discipline: tests-first acceptance gate. Standalone repo todd427/cultaca (root: README, PRD, opencode.json, SETUP); PRD mirror at foxxelabs-config/cultaca/.",
       "created_approx": "2026-06-24"
     }
   ]
