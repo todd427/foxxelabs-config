@@ -85,15 +85,13 @@ When the piece touches an ethical or philosophical question, state it in the pla
 
 These are short passages demonstrating the voice in non-fiction register. Use them as calibration.
 
-**Provenance rule — read before editing this section:** every few-shot example MUST be a passage Todd actually wrote, verified by Todd. It is NOT enough that a passage "sounds like the voice" — Claude-authored text sounds like the voice by construction (that is exactly how this section was contaminated twice). Sounding right is not provenance. Only Example 1 below is currently a verified-Todd passage.
+**Provenance rule — read before editing this section:** every few-shot example MUST be a passage Todd actually wrote, verified by Todd. It is NOT enough that a passage "sounds like the voice" — Claude-authored text sounds like the voice by construction (that is exactly how this section was contaminated repeatedly). Sounding right is not provenance. As of v0.4, NO example below is verified-Todd — all three slots are PENDING. Example 1's removal is the proof: it carried an explicit "Todd confirmed authorship" note and was still Claude's. A verification label is not provenance either; only Todd asserting authorship of a specific passage is.
 
 ---
 
-**Example 1 — Opening a technical argument (verified Todd):**
+**Example 1 — Opening a technical argument:**
 
-> The web was built for humans. Every assumption baked into HTTP, OAuth, CAPTCHA, and cookie consent flows assumes a person on the other end of the connection. Agents aren't people. They can't solve a visual puzzle. They can't click "I agree." They certainly can't create an account on a platform that requires a phone number for verification.
->
-> This isn't a design flaw. It was a deliberate choice. The problem is that we made it before agents existed.
+> [PENDING — verified-Todd passage required. The v0.3 text here ("The web was built for humans…") was Claude-authored, not Todd's — Todd identified it as mine in v0.4. It had been marked "verified Todd — Todd confirmed authorship"; that confirmation was false. This is the exact failure mode the provenance rule above describes: an example carrying an explicit verification was still not Todd's. Replacement to be sourced from text Todd actually wrote and approved. Candidate register in hand: the spacecraft-propulsion term project's technical-argument openers — pending Todd's decision on whether to re-register this slot away from contemporary essay.]
 
 ---
 
@@ -105,7 +103,7 @@ These are short passages demonstrating the voice in non-fiction register. Use th
 
 **Example 3 — Ending a section:**
 
-> [PENDING — verified-Todd passage required. Same correction as Example 2: the v0.2 placeholder was Claude-authored and has been removed. Replacement to be sourced from Todd's own non-fiction and approved before it goes in.]
+> [PENDING — verified-Todd passage required. Same correction as Example 2: the v0.2 placeholder was Claude-authored and has been removed. Replacement to be sourced from Todd's own non-fiction and approved before it goes in. Candidate in hand: section-closing aphorisms from Dragonholder — pending Todd's selection.]
 
 ---
 
@@ -137,9 +135,11 @@ Before passing the draft to Todd for his editorial pass:
 ## Provenance & Changelog
 
 **Few-shot example sources:**
-- Example 1 — verified Todd (agents-and-the-web argument; Todd confirmed authorship).
+- Example 1 — PENDING. Was Claude-authored (agents-and-the-web argument); the v0.3 "Todd confirmed authorship" note was wrong. Removed v0.4.
 - Example 2 — PENDING verified-Todd passage.
 - Example 3 — PENDING verified-Todd passage.
+
+**v0.4 — 2026-06-24:** Removed Example 1. Todd identified the "web was built for humans" passage — the one slot marked verified, the anchor for the whole section — as Claude-authored, not his. The "Todd confirmed authorship" note was therefore false. All three few-shot slots are now PENDING; the section currently holds zero verified-Todd exemplars. This is the strongest possible confirmation of the provenance rule: even an example carrying an explicit verification was Claude's. Standing finding worth recording: every genuine Todd source in hand is a non-essay register — Dragonholder (memoir), the spacecraft-propulsion term project (technical report), the Anne McCaffrey interview (interviewer-mode dialogue). The contemporary opinion-essay register this profile is written to emulate has no verified-Todd exemplar yet — which is precisely why this section kept getting filled with Claude prose. Resolution pending Todd: re-target the examples to the registers he has actually written in, or supply/certify genuine essay prose. No slot to be filled except from a passage whose authorship Todd asserts.
 
 **v0.3 — 2026-06-24:** Removed the v0.2 replacements for Examples 2 and 3. They had been taken from "The Long Bootstrap," which is Claude-authored — Claude could not distinguish its own article from Todd's prose, which is the contamination mechanism this rule exists to prevent. Slots returned to PENDING; replacements to be sourced from text Todd actually wrote (Dragonholder; the spacecraft-propulsion term project) and approved by Todd. Added the explicit provenance rule: sounding like the voice is not provenance.
 
