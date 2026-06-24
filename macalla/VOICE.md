@@ -83,11 +83,13 @@ When the piece touches an ethical or philosophical question, state it in the pla
 
 ## Few-Shot Examples
 
-These are short passages demonstrating the voice in non-fiction register. Use them as calibration. All three are real Todd passages — see provenance note below. Do not replace them with authored text.
+These are short passages demonstrating the voice in non-fiction register. Use them as calibration.
+
+**Provenance rule — read before editing this section:** every few-shot example MUST be a passage Todd actually wrote, verified by Todd. It is NOT enough that a passage "sounds like the voice" — Claude-authored text sounds like the voice by construction (that is exactly how this section was contaminated twice). Sounding right is not provenance. Only Example 1 below is currently a verified-Todd passage.
 
 ---
 
-**Example 1 — Opening a technical argument:**
+**Example 1 — Opening a technical argument (verified Todd):**
 
 > The web was built for humans. Every assumption baked into HTTP, OAuth, CAPTCHA, and cookie consent flows assumes a person on the other end of the connection. Agents aren't people. They can't solve a visual puzzle. They can't click "I agree." They certainly can't create an account on a platform that requires a phone number for verification.
 >
@@ -97,15 +99,13 @@ These are short passages demonstrating the voice in non-fiction register. Use th
 
 **Example 2 — Stating a position under dispute:**
 
-> The depot is the market, not the regolith. Lunar water in a permanently shadowed crater is worth nothing. Lunar water electrolysed, cryogenically stored, and delivered to an L1 depot is worth whatever the next customer pays not to launch it from Earth.
->
-> The economics are the economics of that translation. Everything else is geology.
+> [PENDING — verified-Todd passage required. The v0.2 placeholder here was taken from "The Long Bootstrap," which turns out to be Claude-authored, not Todd's prose. Removed in v0.3. Replacement to be mined from Dragonholder / the propulsion term project (Todd's own writing) and approved by Todd before it goes in.]
 
 ---
 
 **Example 3 — Ending a section:**
 
-> Visible hardware without infrastructure is theatre. Infrastructure without visible hardware is invisible. The combination is what builds frontier economies.
+> [PENDING — verified-Todd passage required. Same correction as Example 2: the v0.2 placeholder was Claude-authored and has been removed. Replacement to be sourced from Todd's own non-fiction and approved before it goes in.]
 
 ---
 
@@ -136,11 +136,13 @@ Before passing the draft to Todd for his editorial pass:
 
 ## Provenance & Changelog
 
-**Few-shot example sources (all real Todd text, no authored calibration):**
-- Example 1 — Todd, agents-and-the-web argument.
-- Example 2 — Todd, *The Long Bootstrap* (cislunar roadmap), §5.
-- Example 3 — Todd, *The Long Bootstrap*, §9.
+**Few-shot example sources:**
+- Example 1 — verified Todd (agents-and-the-web argument; Todd confirmed authorship).
+- Example 2 — PENDING verified-Todd passage.
+- Example 3 — PENDING verified-Todd passage.
 
-**v0.2 — 2026-06-24:** Replaced Examples 2 and 3 (which had been Claude-authored — calibrating the voice toward the assistant rather than toward Todd) with real passages from Todd's own non-fiction. Kept Example 1. Demoted the detector-score checklist items. *Candidates pending Todd's approval — swap any passage that doesn't represent the voice.*
+**v0.3 — 2026-06-24:** Removed the v0.2 replacements for Examples 2 and 3. They had been taken from "The Long Bootstrap," which is Claude-authored — Claude could not distinguish its own article from Todd's prose, which is the contamination mechanism this rule exists to prevent. Slots returned to PENDING; replacements to be sourced from text Todd actually wrote (Dragonholder; the spacecraft-propulsion term project) and approved by Todd. Added the explicit provenance rule: sounding like the voice is not provenance.
+
+**v0.2 — 2026-06-24:** Replaced Examples 2 and 3 (Claude-authored) — but with passages later found to also be Claude-authored; see v0.3. Demoted the detector-score checklist items.
 
 **v0.1 — 2026-04-06:** Initial profile. Derived from Todd McCaffrey fiction corpus (Killing Ellay, Ellay, TSW, Dragon's Eye) and non-fiction notes via Mnemos.
