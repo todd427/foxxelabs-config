@@ -50,7 +50,7 @@ If the reader doesn't get it, that's fine. The alternative — over-explaining �
 ### 7. Aphoristic conclusions
 End sections with a single sentence that lands and stops. Make it the kind of sentence someone would remember.
 
-*Examples from Todd's fiction voice:*
+*Examples from Todd's fiction voice (UNVERIFIED — flagged for audit under the provenance rule; see v0.5 changelog):*
 - "It never hurts to have more than one plan."
 - "You do, or you wouldn't hurt so much."
 
@@ -83,27 +83,29 @@ When the piece touches an ethical or philosophical question, state it in the pla
 
 ## Few-Shot Examples
 
-These are short passages demonstrating the voice in non-fiction register. Use them as calibration.
+These are short passages demonstrating the voice. Use them as calibration.
 
-**Provenance rule — read before editing this section:** every few-shot example MUST be a passage Todd actually wrote, verified by Todd. It is NOT enough that a passage "sounds like the voice" — Claude-authored text sounds like the voice by construction (that is exactly how this section was contaminated repeatedly). Sounding right is not provenance. As of v0.4, NO example below is verified-Todd — all three slots are PENDING. Example 1's removal is the proof: it carried an explicit "Todd confirmed authorship" note and was still Claude's. A verification label is not provenance either; only Todd asserting authorship of a specific passage is.
+**Provenance rule — read before editing this section:** every few-shot example MUST be a passage Todd actually wrote, verified by Todd. It is NOT enough that a passage "sounds like the voice" — Claude-authored text sounds like the voice by construction (that is exactly how this section was contaminated repeatedly). Sounding right is not provenance; only Todd asserting authorship of a specific passage is.
 
----
-
-**Example 1 — Opening a technical argument:**
-
-> [PENDING — verified-Todd passage required. The v0.3 text here ("The web was built for humans…") was Claude-authored, not Todd's — Todd identified it as mine in v0.4. It had been marked "verified Todd — Todd confirmed authorship"; that confirmation was false. This is the exact failure mode the provenance rule above describes: an example carrying an explicit verification was still not Todd's. Replacement to be sourced from text Todd actually wrote and approved. Candidate register in hand: the spacecraft-propulsion term project's technical-argument openers — pending Todd's decision on whether to re-register this slot away from contemporary essay.]
+**Register basis (v0.5):** the slots below are now filled from Todd's verified non-fiction — the *analytical* register (his 1989 "Spacecraft Propulsion Term Project") for Examples 1–2, and the *memoir* register (his book *Dragonholder*) for Example 3. These are the registers Todd has actually written in. This profile's stated output target is articles/opinion/essays — a register for which no verified-Todd exemplar exists — so the essay voice is *extrapolated* from these adjacent registers, not exemplified by same-register prose. Each example is labelled with its source register; weigh that when calibrating.
 
 ---
 
-**Example 2 — Stating a position under dispute:**
+**Example 1 — Opening a technical argument** *(analytical register — Todd, "Spacecraft Propulsion Term Project," 1989):*
 
-> [PENDING — verified-Todd passage required. The v0.2 placeholder here was taken from "The Long Bootstrap," which turns out to be Claude-authored, not Todd's prose. Removed in v0.3. Replacement to be mined from Dragonholder / the propulsion term project (Todd's own writing) and approved by Todd before it goes in.]
+> The use of anti-matter to heat hydrogen by direct conversion to energy is limited not only by the availability of anti-matter but also by materials considerations. Currently our technology is such that supporting a core chamber temperature greater than 6000°R is not feasible.
 
 ---
 
-**Example 3 — Ending a section:**
+**Example 2 — Stating a position under dispute** *(analytical register — Todd, "Spacecraft Propulsion Term Project," 1989):*
 
-> [PENDING — verified-Todd passage required. Same correction as Example 2: the v0.2 placeholder was Claude-authored and has been removed. Replacement to be sourced from Todd's own non-fiction and approved before it goes in. Candidate in hand: section-closing aphorisms from Dragonholder — pending Todd's selection.]
+> The two stage MMH/N₂O₄ system with a solid upper stage is the best application of proven technology. The only new technology would be on orbit integration of OTV, ATV and satellite. However the MMH/N₂O₄ propellant is not as efficient as the others.
+
+---
+
+**Example 3 — Ending a section** *(memoir register — Todd, *Dragonholder*):*
+
+> Somehow Anne found the time to cook, to sew – and to let dragons fly.
 
 ---
 
@@ -135,11 +137,13 @@ Before passing the draft to Todd for his editorial pass:
 ## Provenance & Changelog
 
 **Few-shot example sources:**
-- Example 1 — PENDING. Was Claude-authored (agents-and-the-web argument); the v0.3 "Todd confirmed authorship" note was wrong. Removed v0.4.
-- Example 2 — PENDING verified-Todd passage.
-- Example 3 — PENDING verified-Todd passage.
+- Example 1 — verified Todd (analytical; "Spacecraft Propulsion Term Project," 1989).
+- Example 2 — verified Todd (analytical; "Spacecraft Propulsion Term Project," 1989).
+- Example 3 — verified Todd (memoir; *Dragonholder*).
 
-**v0.4 — 2026-06-24:** Removed Example 1. Todd identified the "web was built for humans" passage — the one slot marked verified, the anchor for the whole section — as Claude-authored, not his. The "Todd confirmed authorship" note was therefore false. All three few-shot slots are now PENDING; the section currently holds zero verified-Todd exemplars. This is the strongest possible confirmation of the provenance rule: even an example carrying an explicit verification was Claude's. Standing finding worth recording: every genuine Todd source in hand is a non-essay register — Dragonholder (memoir), the spacecraft-propulsion term project (technical report), the Anne McCaffrey interview (interviewer-mode dialogue). The contemporary opinion-essay register this profile is written to emulate has no verified-Todd exemplar yet — which is precisely why this section kept getting filled with Claude prose. Resolution pending Todd: re-target the examples to the registers he has actually written in, or supply/certify genuine essay prose. No slot to be filled except from a passage whose authorship Todd asserts.
+**v0.5 — 2026-06-24:** Re-targeted the few-shot section to Todd's verified non-fiction registers (Option 1). Filled all three slots from prose Todd authored: Examples 1–2 from the "Spacecraft Propulsion Term Project" (analytical register), Example 3 from *Dragonholder* (memoir register). First fully verified-Todd version of this section. Added a register-basis note: the profile's articles/opinion/essay output target has no verified-Todd exemplar, so the essay voice is extrapolated from the analytical + memoir registers rather than exemplified — examples labelled by source register accordingly. Open items: the two inline fiction-voice lines under characteristic #7 are unverified and now flagged for audit under the same rule; the broader article corpus (`we-have-met-the-ai`, `articles/`) still needs a file-by-file authorship pass before any of it seeds Macalla.
+
+**v0.4 — 2026-06-24:** Removed Example 1. Todd identified the "web was built for humans" passage — the one slot marked verified, the anchor for the whole section — as Claude-authored, not his. The "Todd confirmed authorship" note was therefore false. All three few-shot slots returned to PENDING; the section held zero verified-Todd exemplars. Strongest possible confirmation of the provenance rule: even an example carrying an explicit verification was Claude's. Recorded the standing finding that every genuine Todd source in hand is a non-essay register, with no verified-Todd exemplar of the opinion-essay register this profile targets — the root cause of repeated Claude contamination here.
 
 **v0.3 — 2026-06-24:** Removed the v0.2 replacements for Examples 2 and 3. They had been taken from "The Long Bootstrap," which is Claude-authored — Claude could not distinguish its own article from Todd's prose, which is the contamination mechanism this rule exists to prevent. Slots returned to PENDING; replacements to be sourced from text Todd actually wrote (Dragonholder; the spacecraft-propulsion term project) and approved by Todd. Added the explicit provenance rule: sounding like the voice is not provenance.
 
