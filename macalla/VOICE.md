@@ -27,6 +27,8 @@ Every sentence carries maximum load. If a word isn't earning its place, it's gon
 
 No throat-clearing. No "It is worth noting that..." No "In this piece, I will argue..." The argument begins in sentence one.
 
+Cut detail the reader can't use *yet*. If a fact belongs to a later section, let it wait there — front-loading it spends the reveal early and clutters the sentence that needed to land.
+
 ### 3. Dry wit, deployed once
 One sardonic observation per piece. Precisely placed. Never repeated.
 
@@ -78,6 +80,16 @@ In opinion and manifesto pieces the sentences run longer and lean on repetition-
 
 This register **coexists with** the terse reflective register (#1, #2, #7); it does not replace it. A reflective piece on writing runs to short aphorisms; a call-to-action on spaceflight runs to rolling anaphora. Match the mode of the piece, and never flatten an opinion piece into staccato punches on the mistaken belief that "compression above all" is an absolute — it is register-dependent.
 
+### 12. White space is your friend *(added v0.7)*
+Short paragraphs. Air between the beats. A dense block of correct prose still reads as a wall — breaking it into one- and two-sentence paragraphs isn't decoration, it's pacing, and pacing is voice.
+
+When a paragraph in a non-technical passage runs past four or five sentences, look for the break. The temptation to build a monolith is strongest in analytical and expository stretches, which is exactly where it does the most damage. Break them anyway.
+
+### 13. Describe, then name *(added v0.7)*
+Introduce the thing, then attach the label — don't lead with the term and define backwards.
+
+"The space between here and the Moon … is usually termed *cislunar*." Not: "Cislunar is the space between here and the Moon…" The reader arrives at the word instead of being handed a glossary. Same move for any coined term or piece of jargon: give the picture first, the name second.
+
 ---
 
 ## What NOT to Do
@@ -89,6 +101,8 @@ This register **coexists with** the terse reflective register (#1, #2, #7); it d
 - **No cheerleading:** The piece doesn't end with "The future is bright if we..." It ends with the truth, plainly stated.
 - **No AI tells:** "Delve", "nuanced", "multifaceted", "it's worth noting", "in conclusion", "at the end of the day." These are immediate flags.
 - **No symmetrical sentences:** AI prose has machine-regular rhythm. Break it. Vary sentence length aggressively.
+- **No monolithic paragraphs:** Break for air. White space is pacing, not decoration — see #12.
+- **No glossary-first definitions:** Describe the thing, then name it — see #13. "…is usually termed X" beats "X is…".
 - **Do NOT strip "I think that" / "I say that" / "I feel that":** these are Todd's, not AI hedges — see characteristic #8.
 
 ---
@@ -97,7 +111,7 @@ This register **coexists with** the terse reflective register (#1, #2, #7); it d
 
 These are short passages demonstrating the voice. Use them as calibration.
 
-**Provenance rule — read before editing this section:** every few-shot example MUST be a passage Todd actually wrote, verified by Todd. It is NOT enough that a passage "sounds like the voice" — Claude-authored text sounds like the voice by construction (that is exactly how this section was contaminated repeatedly). Sounding right is not provenance; only Todd asserting authorship of a specific passage is.
+**Provenance rule — read before editing this section:** every few-shot example MUST be a passage Todd actually wrote, verified by Todd. It is NOT enough that a passage "sounds like the voice" — Claude-authored text sounds like the voice by construction (that is exactly how this section was contaminated repeatedly). Sounding right is not provenance; only Todd asserting authorship of a specific passage is. A passage Todd *edited* but did not author (a Todd/Claude hybrid) is a rule source, not an exemplar — do not slot it here.
 
 **Register basis (v0.6):** the few-shot section now spans three registers of verified-Todd prose. Examples 1–2 are *analytical* (the 1989 "Spacecraft Propulsion Term Project"); Example 3 is *memoir* (*Dragonholder*); Examples 4–6 are the *opinion / reflective-essay / memoir-essay* register (the samples Todd uploaded 2026-07-14). The v0.5 gap — no verified-Todd exemplar in the articles/opinion/essay output target — is now **closed**: Examples 4–6 are same-register verified prose, not extrapolation. Each example is labelled with its source register; weigh that when calibrating.
 
@@ -151,6 +165,8 @@ Before passing the draft to Todd for his editorial pass:
 
 - [ ] Does any sentence exceed 30 words? If yes, split it — **unless** the piece is in the opinion/manifesto register and the length is doing anaphoric work (#11).
 - [ ] Does the piece open with a claim, not context? If not, cut the opening.
+- [ ] Any paragraph over ~4–5 sentences in a non-technical passage? Break it for air. (#12)
+- [ ] Any term or piece of jargon defined label-first? Flip it to describe-then-name. (#13)
 - [ ] Is there more than one joke/sardonic line? Cut the weaker one.
 - [ ] Are there any of the forbidden adverbs? Remove them.
 - [ ] Does the final sentence of each section land hard? If not, rewrite it.
@@ -180,6 +196,8 @@ Before passing the draft to Todd for his editorial pass:
 - Example 4 — verified Todd (opinion/manifesto; "We stand at a crossroads," 2026).
 - Example 5 — verified Todd (reflective essay; "Writers And Readers").
 - Example 6 — verified Todd (memoir-essay; "Writing… and why").
+
+**v0.7 — 2026-07-14:** Two rules added from Todd's live edit of the voiced cislunar §1, during a Todd-ese pass on *The Long Bootstrap*. #12 *white space is your friend* — short paragraphs, air between beats; break monolithic paragraphs, hardest in analytical passages. #13 *describe, then name* — introduce the thing and attach the label last ("…is usually termed cislunar" over "Cislunar is…"). Also observed in the same edit and folded under existing #2 (compression): Todd cut a middle-nodes clause and "layer by layer" from the definition as detail the reader couldn't use yet. **Provenance:** both rules were demonstrated by Todd editing Claude-drafted prose, so the edited paragraph is a Todd/Claude hybrid — recorded here as a rule source, NOT added to `voice-corpus/` as an exemplar (hybrid provenance fails the exemplar test; note added to the provenance rule). What NOT to Do and the checklist updated for #12 and #13.
 
 **v0.6 — 2026-07-14:** First same-register verified exemplars added. Todd uploaded four of his own pieces — "We stand at a crossroads" (opinion/space manifesto), "Well, here's what I've got" (informal planning/scenario memo), "Writers And Readers" (reflective essay), "Writing… and why" (memoir-essay). All four are authorship-asserted by Todd, and the autobiographical content (his mother's *Freedom's Landing*/*Ransom*, co-writing *Sky Dragons*, his own *Ellay* / *L.A. Witch* / *Canaris Rift* / *Steam World* series and the PNR pen name) is not Claude-authorable — cleanest provenance the few-shot section has had. Added Examples 4–6 from the first, third, and fourth pieces. **Closed the v0.5 "no verified essay-register exemplar" gap.** Two corrections forced by the same-register prose: (1) the "'I think that' is a hedge, never use it" rule in #8 is wrong for Todd's opinion register — he uses "I say that / I think that / I feel that" as position-markers; corrected in #8 and in the What-NOT-to-Do list. (2) Added characteristic #11 (rhetorical build): the opinion/manifesto register runs longer, anaphoric, and question-driven, which contradicts the terse-punch skew of #1/#2; scoped #1 and the checklist accordingly. The fourth sample ("Well, here's what I've got") is logged as verified-Todd in a distinct informal-planning/scenario register but **not** slotted as a few-shot example — its list-driven structure isn't representative of the essay output target, and it reads as worldbuilding rather than non-fiction; held as a candidate. **Provenance anchoring:** source RTFs are not yet committed to the repo — provenance currently rests on Todd's upload + this changelog. Recommend committing the four texts to `macalla/voice-corpus/` to make it durable and auditable.
 
