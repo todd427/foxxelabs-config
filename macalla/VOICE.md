@@ -46,6 +46,8 @@ Opposition creates emphasis. Decoration doesn't.
 
 *Example:* "The old loop was slow. This one isn't." Not: "The dramatically accelerated new loop has fundamentally transformed the previously time-consuming development experience."
 
+*Boundary (v0.8):* this is contrast between two **real** things. It is not licence for the "not X, it's Y" define-by-negation tic — see What NOT to Do. The test: if the thing being negated was invented only to be knocked down, it's the tic; if both sides are real, it's #5.
+
 ### 6. Trust the reader completely
 Never explain the point you just made. Never explain the joke.
 
@@ -100,6 +102,7 @@ Introduce the thing, then attach the label — don't lead with the term and defi
 - **No passive constructions** unless used for a specific rhetorical effect.
 - **No cheerleading:** The piece doesn't end with "The future is bright if we..." It ends with the truth, plainly stated.
 - **No AI tells:** "Delve", "nuanced", "multifaceted", "it's worth noting", "in conclusion", "at the end of the day." These are immediate flags.
+- **No "not X, it's Y" antithesis:** The define-by-negation reflex — "Cislunar isn't a region. It's a graph." / "I'm not saying it's overhyped; I'm saying the opposite." / "It isn't in LEO — it's at the Lagrange points." — is an AI tell and Claude's most persistent tic in this voice. Say what the thing *is*; don't manufacture the strawman it isn't just to pivot off it. Distinct from genuine contrast (#5), which sets two *real* things against each other ("the old loop was slow; this one isn't"). Rare, load-bearing use is fine; the reflex is the tic — hunt it down on every pass.
 - **No symmetrical sentences:** AI prose has machine-regular rhythm. Break it. Vary sentence length aggressively.
 - **No monolithic paragraphs:** Break for air. White space is pacing, not decoration — see #12.
 - **No glossary-first definitions:** Describe the thing, then name it — see #13. "…is usually termed X" beats "X is…".
@@ -167,6 +170,7 @@ Before passing the draft to Todd for his editorial pass:
 - [ ] Does the piece open with a claim, not context? If not, cut the opening.
 - [ ] Any paragraph over ~4–5 sentences in a non-technical passage? Break it for air. (#12)
 - [ ] Any term or piece of jargon defined label-first? Flip it to describe-then-name. (#13)
+- [ ] Any "not X, it's Y" define-by-negation? Cut it unless both sides are real things (genuine contrast, #5).
 - [ ] Is there more than one joke/sardonic line? Cut the weaker one.
 - [ ] Are there any of the forbidden adverbs? Remove them.
 - [ ] Does the final sentence of each section land hard? If not, rewrite it.
@@ -196,6 +200,8 @@ Before passing the draft to Todd for his editorial pass:
 - Example 4 — verified Todd (opinion/manifesto; "We stand at a crossroads," 2026).
 - Example 5 — verified Todd (reflective essay; "Writers And Readers").
 - Example 6 — verified Todd (memoir-essay; "Writing… and why").
+
+**v0.8 — 2026-07-14:** Added a kill-rule for the "not X, it's Y" antithesis (define-by-negation) to What NOT to Do and the checklist, plus a boundary note under #5. Todd flagged it as a recurring AI tell in the voiced cislunar draft — "Cislunar isn't a region. It's a graph." — and it was scattered through the §2 and §13 drafts too ("isn't in LEO — it's at the Lagrange points", "I'm not saying it's overhyped; I'm saying the opposite"). Distinguished from genuine contrast (#5): the banned move manufactures a negation purely to pivot off it; #5 sets two real things against each other. Rule source: Todd's flag on Claude-drafted prose (no exemplar).
 
 **v0.7 — 2026-07-14:** Two rules added from Todd's live edit of the voiced cislunar §1, during a Todd-ese pass on *The Long Bootstrap*. #12 *white space is your friend* — short paragraphs, air between beats; break monolithic paragraphs, hardest in analytical passages. #13 *describe, then name* — introduce the thing and attach the label last ("…is usually termed cislunar" over "Cislunar is…"). Also observed in the same edit and folded under existing #2 (compression): Todd cut a middle-nodes clause and "layer by layer" from the definition as detail the reader couldn't use yet. **Provenance:** both rules were demonstrated by Todd editing Claude-drafted prose, so the edited paragraph is a Todd/Claude hybrid — recorded here as a rule source, NOT added to `voice-corpus/` as an exemplar (hybrid provenance fails the exemplar test; note added to the provenance rule). What NOT to Do and the checklist updated for #12 and #13.
 
