@@ -1,6 +1,6 @@
 # <span style="color:#4a9eff">PRD — Suan: Sleep Weight Consolidation</span>
 
-<span style="color:#888">Working title — "Suan" (deep sleep) not yet cleared through ainm. Version 0.2 — 2026-08-07. Status: draft.</span>
+<span style="color:#888">Working title — "Suan" (deep sleep) not yet cleared through ainm. Version 0.3 — 2026-08-07. Status: draft.</span>
 
 ---
 
@@ -95,6 +95,7 @@ Go/no-go between M1 and M2: a real frontier delta at M1. If v0 shows none across
 4. Frontier-delta measurement protocol: which intake set, how many manifold rebuilds for a stable read.
 5. Name: run "Suan" (and alternates) through ainm.
 6. Whether Legion consumes the adapted model or the base — embodiment implications out of scope here but flagged.
+7. M0 extraction path: `query_memory` caps at 12 results — bulk export of the ~1,611 `source='aislinge'` chunks needs either direct Qdrant/FTS5 access on the Mnemos host or a bulk-export-by-source endpoint added to Mnemos. Decide before the CC session starts.
 
 ## <span style="color:#4a9eff">9. Risks</span>
 
