@@ -1,7 +1,7 @@
 {
   "_meta": {
     "description": "FoxxeLabs project registry. Facts only — Claude derives priority ranking at session start.",
-    "updated": "2026-06-24",
+    "updated": "2026-09-16",
     "weightings": {
       "note": "Todd's current priority weightings for Claude to use in ranking",
       "deadline_pressure": "high",
@@ -465,6 +465,19 @@
       "strategic_role": "Provider-agnostic coding resilience — keeps the build practice working when any single LLM provider rations capacity. Off-the-shelf floor; Gléas is the in-house sibling.",
       "notes": "Irish: backup, reserve, backstop (KOOL-tah-kuh). Born from June 2026 Anthropic outage cluster (~10 in 3 weeks, 529 capacity errors). OpenCode wired to three failure domains: local Iris vLLM (Qwen3-Coder-30B, OpenAI-compatible :8000, tool-call-parser hermes), Anthropic primary (API key only), OpenAI uncorrelated failover. OpenCode does manual switching; auto-failover needs gateway (Path A, less sovereign) or local Olla-style proxy (Path B, sovereign). Discipline: tests-first acceptance gate. Standalone repo todd427/cultaca (root: README, PRD, opencode.json, SETUP); PRD mirror at foxxelabs-config/cultaca/.",
       "created_approx": "2026-06-24"
+    },
+    {
+      "name": "Directing AI",
+      "repo": null,
+      "url": null,
+      "status": "active",
+      "blocked_by": null,
+      "deadline": null,
+      "next_action": "CC brief for extract_sessions.py (three export formats + feature set); ATU ethics application for the session-coding study; ask Anthony Carty to act as second coder",
+      "depends_on": ["Mnemos", "Tomhas", "Beirt"],
+      "strategic_role": "The discipline — Todd's teaching, research and framework line: Directing AI (discipline) / Orchestrated Cognition (framework) / Reading the Fuzz, Orchestrating Under Fuzz, Orchestrating at Scale (courses) / Borrowed Authority (anti-pattern). Spine of the ATU research PhD and the ATU teaching route.",
+      "notes": "Naming architecture fixed 2026-05-11 (directing-ai/NAMING.md). Programme, founding plan, course designs and briefs under directing-ai/. First empirical paper specified 2026-09-16: 'Build, Think, Ask' — session-level four-mode coding (build/think/lookup/admin) of the 2023–2026 ChatGPT + claude.ai + Claude Code exports, joined to Tomhas rollups; see directing-ai/Empirical_Grounding_Session_Coding_Study.md. Release is classifier + feature table, never transcripts. 'Comhar' considered as a framework name and rejected (collides with Comhoibrí; existing naming already covers it).",
+      "created_approx": "2026-05"
     }
   ]
 }
