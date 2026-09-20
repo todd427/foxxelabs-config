@@ -1,10 +1,12 @@
 # <span style="color:#5B8DBE">PRD: mdvi</span>
 
-> <span style="color:#C97B5C">**SUPERSEDED 2026-06-03.**</span> Scope absorbed into Cló's manuscript editor (TipTap/ProseMirror). Cló handles rendered-while-editing markdown, multi-file project context, persistent storage, and version history natively. The remaining unserved category — quick single-file CLI edits — is adequately covered by `vim file.md` on source. Body retained below for reference. Do not implement. If Cló's scope ever narrows and the editor surface is dropped, revisit this PRD.
+> <span style="color:#C97B5C">**IMPLEMENTED AS A VIM OVERLAY 2026-09-20.**</span> The styling pass (§3, §5 layer 3) ships as two files for stock vim — see [README.md](README.md). The TUI host and editor core (§5 layers 1–2) were not built and are not needed: stock vim is the vi. The Rust binary below remains unbuilt; body retained as the spec the overlay was written against.
+>
+> <span style="color:#888">History: marked superseded by Cló's manuscript editor on 2026-06-03. That held for rendered-while-editing in a browser; it never covered a terminal-based editor, which is the requirement that reopened this on 2026-09-20.</span>
 
 <span style="color:#888">A vi-shaped markdown editor with live styling.</span>
 
-<span style="color:#888">**Status:** Superseded by Cló editor scope, 2026-06-03.</span>
+<span style="color:#888">**Status:** Styling pass implemented as a vim overlay, 2026-09-20. Standalone binary not built.</span>
 <span style="color:#888">**Owner:** Todd. **Date:** 2026-06-03.</span>
 <span style="color:#888">**Working name:** `mdvi`. Final name TBD — see §10.</span>
 
@@ -95,8 +97,10 @@ Decision deferred. The PRD references `mdvi` throughout for tractability.
 
 **Concealment escape hatch.** Should there be a `:set conceal` toggle that *does* hide markup, for users who change their mind? Default off. Decision deferred until first dogfooding.
 
+<span style="color:#888">Overlay note, 2026-09-20: the overlay inverts this default. Conceal is on, because hiding `<span>` tags is what makes Todd's own documents readable; the cursor line always shows raw source, `\c` flips the whole buffer, and `g:markdown_syntax_conceal = 0` keeps Markdown markers visible. No glyphs are substituted in either mode. Revisit after dogfooding.</span>
+
 ## <span style="color:#5B8DBE">11. Trigger to revisit</span>
 
-<span style="color:#C97B5C">Superseded by Cló (2026-06-03).</span> Revisit only if Cló's scope narrows and its editor surface is dropped. Otherwise, do not pick this up.
+<span style="color:#C97B5C">Reopened and closed 2026-09-20</span> by the vim overlay. Build the standalone binary only if the overlay proves inadequate in daily use for a reason vim cannot fix — not for the styling, which is done.
 
-Original trigger (now moot): Post-viva, conditional on viva passing, no higher-priority Macalla / Anseo / Stór blockers, and continued willingness to commit 4–6 weeks against ~30 years of adequate vim-on-source as the baseline.
+Original trigger (2026-06-03, now moot): Post-viva, conditional on viva passing, no higher-priority Macalla / Anseo / Stór blockers, and continued willingness to commit 4–6 weeks against ~30 years of adequate vim-on-source as the baseline.
