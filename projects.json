@@ -1,7 +1,7 @@
 {
   "_meta": {
     "description": "FoxxeLabs project registry. Facts only — Claude derives priority ranking at session start.",
-    "updated": "2026-09-16",
+    "updated": "2026-09-30",
     "weightings": {
       "note": "Todd's current priority weightings for Claude to use in ranking",
       "deadline_pressure": "high",
@@ -478,6 +478,19 @@
       "strategic_role": "The discipline — Todd's teaching, research and framework line: Directing AI (discipline) / Orchestrated Cognition (framework) / Reading the Fuzz, Orchestrating Under Fuzz, Orchestrating at Scale (courses) / Borrowed Authority (anti-pattern). Spine of the ATU research PhD and the ATU teaching route.",
       "notes": "Naming architecture fixed 2026-05-11 (directing-ai/NAMING.md). Programme, founding plan, course designs and briefs under directing-ai/. First empirical paper specified 2026-09-16: 'Build, Think, Ask' — session-level four-mode coding (build/think/lookup/admin) of the 2023–2026 ChatGPT + claude.ai + Claude Code exports, joined to Tomhas rollups; see directing-ai/Empirical_Grounding_Session_Coding_Study.md. Release is classifier + feature table, never transcripts. 'Comhar' considered as a framework name and rejected (collides with Comhoibrí; existing naming already covers it).",
       "created_approx": "2026-05"
+    },
+    {
+      "name": "Taifeadán",
+      "repo": null,
+      "url": null,
+      "status": "parked",
+      "blocked_by": null,
+      "deadline": null,
+      "next_action": "None. Revisit if a customer, regulator or credibility need names it; optional cheap probe: upstream a crash-safe store to mpi-dsg/agent-flight-recorder",
+      "depends_on": [],
+      "strategic_role": "Proposed general-purpose tamper-evident recorder library for AI agents (EU AI Act Article 12 record-keeping). Shelved before any code was written.",
+      "notes": "Irish: recorder (the device). Shelved 2026-09-30 by Todd. At least three public proposals (arXiv 2609.01931, 2609.04017, 2609.06445) and open-source tools already cover the recorder layer. PRD, research brief and decision record in foxxelabs-config/taifeadan/. Follow-up article on foxxelabs.ie committed as a draft in foxxelabs-astro (src/content/resources/who-reads-the-black-box.md, draft: true).",
+      "created_approx": "2026-09"
     }
   ]
 }
