@@ -1,7 +1,7 @@
 # <span style="color:#0f3a5f">The Long Bootstrap</span>
 ## <span style="color:#1e5a8a">A Cislunar Roadmap, 2026–2120</span>
 
-*Workshop draft — circulating to Pamela Melroy and Les Johnson for technical and policy read. Not for distribution.*
+*Workshop draft — not yet sent. Intended readers for the technical and policy read: Pamela Melroy and Les Johnson. Not for distribution.*
 
 *Author: Todd McCaffrey, FoxxeLabs Limited. Draft date: May 2026; revised June 2026; Gateway status corrected October 2026.*
 
@@ -551,6 +551,7 @@ The geography is destiny. The politics is contingent. The window for shaping the
 
 *Workshop draft complete (Sections 1–13, ~19.2k words). Next-pass action items:*
 
+- *As of October 2026 the draft has not been sent to either intended reader; the reads below are planned, not under way.*
 - *Verify Charania and Olds 2006 propellant mass-balance citation in §5.*
 - *Pressure-test the chip-refresh arithmetic in §8 against current NVIDIA/AMD/Intel ASIC roadmaps with Les Johnson.*
 - *Pressure-test the L1-depot funding-anomaly argument and the European-leverage claim in §4, §9, §10 with Pamela Melroy.*
