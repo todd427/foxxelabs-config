@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" width="900" height="520" font-family="Helvetica, Arial, sans-serif" font-size="14">
+  <defs>
+    <marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#444"/></marker>
+  </defs>
+  <rect width="900" height="520" fill="#fff"/>
+  <text x="450" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#1F6FB2">Cleachtadh — architecture</text>
+
+  <!-- Learner -->
+  <rect x="40" y="200" width="150" height="90" rx="8" fill="#E8F1FA" stroke="#1F6FB2" stroke-width="2"/>
+  <text x="115" y="235" text-anchor="middle" font-weight="bold">Foghlaimeoir</text>
+  <text x="115" y="256" text-anchor="middle">Learner (human)</text>
+  <text x="115" y="276" text-anchor="middle" font-size="12" fill="#555">web UI</text>
+
+  <!-- Orchestrator -->
+  <rect x="300" y="170" width="220" height="150" rx="8" fill="#FFF7E6" stroke="#C97A00" stroke-width="2"/>
+  <text x="410" y="200" text-anchor="middle" font-weight="bold">Orchestrator</text>
+  <text x="410" y="224" text-anchor="middle" font-size="12">holds case sheet</text>
+  <text x="410" y="242" text-anchor="middle" font-size="12">enforces disclosure gates</text>
+  <text x="410" y="260" text-anchor="middle" font-size="12">routes turns, times interventions</text>
+  <text x="410" y="278" text-anchor="middle" font-size="12">writes session log</text>
+  <text x="410" y="300" text-anchor="middle" font-size="12" fill="#C97A00">no model in this box</text>
+
+  <!-- Othar -->
+  <rect x="640" y="80" width="220" height="110" rx="8" fill="#EAF6EA" stroke="#2E8B57" stroke-width="2"/>
+  <text x="750" y="108" text-anchor="middle" font-weight="bold">Othar — patient</text>
+  <text x="750" y="130" text-anchor="middle" font-size="12">small local model via Aigne</text>
+  <text x="750" y="148" text-anchor="middle" font-size="12">sees: persona, self-known facts,</text>
+  <text x="750" y="166" text-anchor="middle" font-size="12">unlocked facts, transcript</text>
+
+  <!-- Meantoir -->
+  <rect x="640" y="300" width="220" height="130" rx="8" fill="#F3E8FA" stroke="#7B3FA0" stroke-width="2"/>
+  <text x="750" y="328" text-anchor="middle" font-weight="bold">Meantóir — mentor</text>
+  <text x="750" y="350" text-anchor="middle" font-size="12">larger model, local or cloud</text>
+  <text x="750" y="368" text-anchor="middle" font-size="12">sees: full case sheet, rubric,</text>
+  <text x="750" y="386" text-anchor="middle" font-size="12">transcript, learner level</text>
+  <text x="750" y="410" text-anchor="middle" font-size="12" fill="#7B3FA0">every intervention cites a rubric ID</text>
+
+  <!-- Stores -->
+  <rect x="60" y="400" width="150" height="70" rx="8" fill="#F4F4F4" stroke="#777"/>
+  <text x="135" y="428" text-anchor="middle" font-weight="bold">Case bank</text>
+  <text x="135" y="448" text-anchor="middle" font-size="12">YAML in git</text>
+
+  <rect x="240" y="400" width="150" height="70" rx="8" fill="#F4F4F4" stroke="#777"/>
+  <text x="315" y="428" text-anchor="middle" font-weight="bold">Rubric store</text>
+  <text x="315" y="448" text-anchor="middle" font-size="12">Cuimhin retrieval</text>
+
+  <rect x="420" y="400" width="150" height="70" rx="8" fill="#F4F4F4" stroke="#777"/>
+  <text x="495" y="428" text-anchor="middle" font-weight="bold">Session store</text>
+  <text x="495" y="448" text-anchor="middle" font-size="12">transcripts, edit pairs</text>
+
+  <!-- Arrows -->
+  <line x1="190" y1="235" x2="300" y2="235" stroke="#444" stroke-width="2" marker-end="url(#a)"/>
+  <text x="245" y="225" text-anchor="middle" font-size="11">learner turn</text>
+  <line x1="300" y1="265" x2="190" y2="265" stroke="#444" stroke-width="2" marker-end="url(#a)"/>
+  <text x="245" y="285" text-anchor="middle" font-size="11">patient reply + interventions</text>
+
+  <line x1="520" y1="200" x2="640" y2="140" stroke="#2E8B57" stroke-width="2" marker-end="url(#a)"/>
+  <line x1="640" y1="160" x2="520" y2="220" stroke="#2E8B57" stroke-width="2" marker-end="url(#a)"/>
+  <text x="590" y="130" text-anchor="middle" font-size="11" fill="#2E8B57">role-scoped context</text>
+
+  <line x1="520" y1="290" x2="640" y2="350" stroke="#7B3FA0" stroke-width="2" marker-end="url(#a)"/>
+  <line x1="640" y1="370" x2="520" y2="310" stroke="#7B3FA0" stroke-width="2" marker-end="url(#a)"/>
+  <text x="590" y="395" text-anchor="middle" font-size="11" fill="#7B3FA0">full context, structured out</text>
+
+  <line x1="135" y1="400" x2="330" y2="320" stroke="#777" stroke-width="1.5" marker-end="url(#a)"/>
+  <line x1="315" y1="400" x2="380" y2="320" stroke="#777" stroke-width="1.5" marker-end="url(#a)"/>
+  <line x1="440" y1="320" x2="495" y2="400" stroke="#777" stroke-width="1.5" marker-end="url(#a)"/>
+  <line x1="640" y1="380" x2="390" y2="440" stroke="#7B3FA0" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#a)"/>
+  <text x="520" y="490" text-anchor="middle" font-size="11" fill="#7B3FA0">mentor retrieves rubric items, never recalls them</text>
+
+  <!-- wall -->
+  <line x1="600" y1="60" x2="600" y2="460" stroke="#C00" stroke-width="2" stroke-dasharray="8,6"/>
+  <text x="600" y="480" text-anchor="middle" font-size="11" fill="#C00">separate inference contexts — nothing the learner types reaches a model as an instruction</text>
+</svg>

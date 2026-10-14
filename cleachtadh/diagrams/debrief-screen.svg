@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 540" width="900" height="540" font-family="Helvetica, Arial, sans-serif" font-size="13">
+  <rect width="900" height="540" fill="#fff"/>
+  <text x="450" y="28" text-anchor="middle" font-size="20" font-weight="bold" fill="#1F6FB2">Cleachtadh — debrief screen</text>
+
+  <rect x="30" y="50" width="840" height="470" rx="10" fill="#FAFAFA" stroke="#999" stroke-width="2"/>
+  <rect x="30" y="50" width="840" height="40" rx="10" fill="#1F6FB2"/>
+  <rect x="30" y="75" width="840" height="15" fill="#1F6FB2"/>
+  <text x="50" y="76" fill="#fff" font-weight="bold">Debrief · Margaret Doyle · 18 turns · 09:40</text>
+  <text x="760" y="76" fill="#fff">Score 61 / 100</text>
+
+  <!-- facts column -->
+  <rect x="45" y="105" width="260" height="395" fill="#fff" stroke="#ccc"/>
+  <text x="60" y="125" font-size="11" fill="#777">PLANTED FACTS</text>
+  <text x="60" y="150" fill="#2E8B57">✔  pain at rest once</text>
+  <text x="80" y="166" font-size="11" fill="#777">turn 14 — relieving factors</text>
+  <text x="60" y="192" fill="#2E8B57">✔  father MI at 58</text>
+  <text x="80" y="208" font-size="11" fill="#777">turn 16 — family history</text>
+  <text x="60" y="234" fill="#C00">✘  left-arm radiation</text>
+  <text x="80" y="250" font-size="11" fill="#777">never asked about spread</text>
+  <text x="60" y="276" fill="#C00">✘  worried it is cancer</text>
+  <text x="80" y="292" font-size="11" fill="#777">ICE not explored</text>
+
+  <text x="60" y="330" font-size="11" fill="#777">MUST DO</text>
+  <text x="60" y="352" fill="#C00">✘  explore ICE</text>
+  <text x="60" y="374" fill="#2E8B57">✔  safety-net</text>
+
+  <text x="60" y="410" font-size="11" fill="#777">MUST NOT</text>
+  <text x="60" y="432" fill="#E0A000">⚠  reassured before red flags excluded</text>
+  <text x="80" y="448" font-size="11" fill="#777">turn 9 — "I'm sure it's fine"</text>
+
+  <!-- interventions column -->
+  <rect x="320" y="105" width="320" height="395" fill="#fff" stroke="#ccc"/>
+  <text x="335" y="125" font-size="11" fill="#777">INTERVENTIONS (5) — each cites a rubric item</text>
+
+  <rect x="332" y="138" width="296" height="60" rx="6" fill="#F8F3FC"/>
+  <rect x="332" y="138" width="5" height="60" fill="#C00"/>
+  <text x="346" y="156" font-size="11" fill="#C00" font-weight="bold">HIGH · turn 9</text>
+  <text x="346" y="172" font-size="12">Reassurance given before red flags excluded.</text>
+  <text x="346" y="190" font-size="10" fill="#7B3FA0" text-decoration="underline">CC-EX-03</text>
+
+  <rect x="332" y="208" width="296" height="60" rx="6" fill="#F8F3FC"/>
+  <rect x="332" y="208" width="5" height="60" fill="#E0A000"/>
+  <text x="346" y="226" font-size="11" fill="#E0A000" font-weight="bold">MEDIUM · turn 12</text>
+  <text x="346" y="242" font-size="12">Three closed questions in a row.</text>
+  <text x="346" y="260" font-size="10" fill="#7B3FA0" text-decoration="underline">CC-GI-07</text>
+
+  <rect x="332" y="278" width="296" height="60" rx="6" fill="#F8F3FC"/>
+  <rect x="332" y="278" width="5" height="60" fill="#E0A000"/>
+  <text x="346" y="296" font-size="11" fill="#E0A000" font-weight="bold">MEDIUM · debrief</text>
+  <text x="346" y="312" font-size="12">Radiation never asked. Red flag missed.</text>
+  <text x="346" y="330" font-size="10" fill="#7B3FA0" text-decoration="underline">CC-GI-11</text>
+
+  <rect x="332" y="348" width="296" height="60" rx="6" fill="#F8F3FC"/>
+  <rect x="332" y="348" width="5" height="60" fill="#E0A000"/>
+  <text x="346" y="366" font-size="11" fill="#E0A000" font-weight="bold">MEDIUM · debrief</text>
+  <text x="346" y="382" font-size="12">Patient's concerns not explored (ICE).</text>
+  <text x="346" y="400" font-size="10" fill="#7B3FA0" text-decoration="underline">CC-UP-02</text>
+
+  <rect x="332" y="418" width="296" height="60" rx="6" fill="#F8F3FC"/>
+  <rect x="332" y="418" width="5" height="60" fill="#6AA84F"/>
+  <text x="346" y="436" font-size="11" fill="#6AA84F" font-weight="bold">LOW · turn 14</text>
+  <text x="346" y="452" font-size="12">Good: relieving factors explored.</text>
+  <text x="346" y="470" font-size="10" fill="#7B3FA0" text-decoration="underline">CC-GI-11</text>
+
+  <!-- right column -->
+  <rect x="655" y="105" width="200" height="395" fill="#fff" stroke="#ccc"/>
+  <text x="670" y="125" font-size="11" fill="#777">SESSION</text>
+  <text x="670" y="150" font-size="12">Facts elicited    2 / 4</text>
+  <text x="670" y="170" font-size="12">Must-do            1 / 2</text>
+  <text x="670" y="190" font-size="12">Must-not           1 breach</text>
+  <text x="670" y="210" font-size="12">Hints used          0</text>
+  <text x="670" y="230" font-size="12">Open : closed    4 : 11</text>
+
+  <text x="670" y="268" font-size="11" fill="#777">TUTOR</text>
+  <text x="670" y="290" font-size="12">Reviewed: not yet</text>
+  <text x="670" y="310" font-size="12">Overrides: 0</text>
+
+  <text x="670" y="348" font-size="11" fill="#777">RESEARCH</text>
+  <rect x="670" y="360" width="14" height="14" fill="#fff" stroke="#555"/>
+  <text x="690" y="372" font-size="12">Share edit pairs</text>
+  <text x="670" y="392" font-size="10" fill="#777">opt-in, this session only</text>
+
+  <rect x="670" y="430" width="170" height="30" rx="6" fill="#1F6FB2"/>
+  <text x="755" y="450" text-anchor="middle" fill="#fff" font-size="12">Replay transcript</text>
+  <rect x="670" y="468" width="170" height="30" rx="6" fill="#fff" stroke="#1F6FB2"/>
+  <text x="755" y="488" text-anchor="middle" fill="#1F6FB2" font-size="12">Next case</text>
+</svg>
